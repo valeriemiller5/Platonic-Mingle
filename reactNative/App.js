@@ -1,47 +1,36 @@
 import React, { Component } from 'react'
-// import { createStackNavigator, AppRegistry, createMaterialTopTabNavigator, createAppContainer } from 'react-navigation'
-// import Home from './views/Home'
-// import Details from './views/Details'
-// import Results from './views/Results'
-import Login from './views/Login'
+import { DefaultTheme, Provider as PaperProvider } from 'react-native-paper'
+import { View } from 'react-native'
 
-export default class ReactNativeCommonScreen extends Component {
-  render() {
-    return <Login />
+import Login from './views/Login'
+import Home from './views/Home'
+
+const theme = {
+  ...DefaultTheme,
+  roundness: 2,
+  colors: {
+    ...DefaultTheme.colors,
+    primary: '#3b5b9d',
+    accent: '#f4f6f7'
   }
 }
 
-// const HomeStack = createStackNavigator({
-//   HomeList: {
-//     screen: Home,
-//     navigationOptions: {
-//       title: 'Search Topic'
-//     }
-//   },
-//   Details: {
-//     screen: Details,
-//     navigationOptions: ({ navigation }) => ({
-//       title: `${navigation.state.params.title}`
-//     })
-//   }
-// })
+export default class ReactNativeCommonScreen extends Component {
+  state = {
+    loggedIn: true
+  }
 
-// const ResultsStack = createStackNavigator ({
-//   ResultsList: {
-//     screen: Results,
-//     navigationOptions: {
-//       title: `Results`
-//     },
-//     ResultsDetails: {
-//       screen: Results,
-//       navigationOptions: ({ navigation }) => ({
-//         title: `${navigation.state.params.title}`
-//       })
-//     }
-//   }
-// })
-
-// export default createAppContainer(createMaterialTopTabNavigator({
-//   Home: { screen: HomeStack },
-//   Results: { screen: ResultsStack }
-// }))
+  render() {
+    if (this.state.loggedIn) {
+      return (
+        <PaperProvider theme={theme}>
+          <View>
+            <Home />
+          </View>
+        </PaperProvider>
+      )
+    } else {
+      return <Login />
+    }
+  }
+}

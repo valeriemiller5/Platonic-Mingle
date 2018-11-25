@@ -28,6 +28,10 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     padding: 20
+  },
+  label: {
+    color: '#0d8898',
+    fontSize: 20
   }
 })
 

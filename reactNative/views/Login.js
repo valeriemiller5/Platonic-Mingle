@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import { StyleSheet, TextInput, ScrollView } from 'react-native'
-
 import Container from '../components/Container'
 import Button from '../components/Button'
 import Label from '../components/Label'
