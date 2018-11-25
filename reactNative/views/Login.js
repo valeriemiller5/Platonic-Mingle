@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { StyleSheet, TextInput, ScrollView } from 'react-native'
 
 import Container from '../components/Container'
-import Button from '../components/Button'
+import Button from '../components/NavButton'
 import Label from '../components/Label'
 
 export default class Login extends Component {
