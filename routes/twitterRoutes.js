@@ -5,10 +5,10 @@ const trendsController = require("../controllers/trendsController");
 const Twitter = require("twitter");
 
 const client = new Twitter ({
-    consumer_key: "UUBfDxn9L6S5u3awmH8cJEnke",
-    consumer_secret: "eiWKbojXpOTHt5vhF6DjKvBGewZDOCIVhT1QWoYRqVm62CGLaV",
-    access_token_key: "1065120313975832577-UDqJdJ4IzsYG9RSDIIf29zCku7p2As",
-    access_token_secret: "uhCa0uxorGJM6buzAODOtHoDXSEgh1X0JBuXPpZjMeeSR"
+    consumer_key: process.env.TWITTER_CONSUMER_KEY,
+    consumer_secret: process.env.TWITTER_CONSUMER_SECRET,
+    access_token_key: process.env.TWITTER_ACCESS_TOKEN_KEY,
+    access_token_secret: process.env.TWITTER_ACCESS_TOKEN_SECRET
 })
 
 var params = {
