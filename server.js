@@ -6,6 +6,7 @@ const db = require("./models");
 const bodyParser = require("body-parser");
 const session = require("express-session");
 const passport = require("./config/passport");
+const twitterRoutes = require("./routes/twitterRoutes")
 require("dotenv").config();
 
 // Serve up static assets (usually on heroku)
@@ -32,6 +33,7 @@ app.use(passport.session());
 // Routes
 require("./routes/apiRoutes")(app);
 require("./routes/htmlRoutes")(app);
+app.use("/api", twitterRoutes);
 
 var syncOptions = { force: false };
 
