@@ -1,34 +1,36 @@
-import * as React from 'react'
-import { StyleSheet } from 'react-native'
-import { BottomNavigation, Text } from 'react-native-paper'
+import * as React from "react";
+import { StyleSheet } from "react-native";
+import { BottomNavigation, Text } from "react-native-paper";
 
-const HomeRoute = () => <Text>Home</Text>
+const HomeRoute = () => <Text>Home</Text>;
 
-const FavoritesRoute = () => <Text>Favorites</Text>
+const FavoritesRoute = () => <Text>Favorites</Text>;
 
-const ExploreRoute = () => <Text>Explore</Text>
+const ExploreRoute = () => <Text>Explore</Text>;
 
-const RecentsRoute = () => <Text>Recents</Text>
+const RecentsRoute = () => <Text>Recents</Text>;
 
 export default class MyComponent extends React.Component {
   state = {
     index: 0,
     routes: [
-      { key: 'home', title: 'Home', icon: 'home' },
-      { key: 'favorites', title: 'Favorites', icon: 'favorite-border' },
-      { key: 'recents', title: 'Recents', icon: 'history' },
-      { key: 'explore', title: 'Explore', icon: 'search' }
+      { key: "home", title: "Home", icon: "home" },
+      { key: "favorites", title: "Favorites", icon: "favorite-border" },
+      { key: "recents", title: "Recents", icon: "history" },
+      { key: "explore", title: "Explore", icon: "search" }
     ]
-  }
+  };
 
-  _handleIndexChange = index => this.setState({ index })
+  _handleIndexChange = index => this.setState({ index });
 
   _renderScene = BottomNavigation.SceneMap({
     home: HomeRoute,
     favorites: FavoritesRoute,
     recents: RecentsRoute,
     explore: ExploreRoute
-  })
+  });
+
+  handlePress = () => {};
 
   render() {
     return (
@@ -37,17 +39,18 @@ export default class MyComponent extends React.Component {
         onIndexChange={this._handleIndexChange}
         renderScene={this._renderScene}
         style={styles.bottom}
+        onPress={this.handlePress}
       />
-    )
+    );
   }
 }
 
 const styles = StyleSheet.create({
   bottom: {
-    position: 'absolute',
+    position: "absolute",
     left: 0,
     right: 0,
     bottom: 0,
-    backgroundColor: '#e1e1e1'
+    backgroundColor: "#e1e1e1"
   }
-})
+});
