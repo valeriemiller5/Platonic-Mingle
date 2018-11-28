@@ -1,0 +1,14 @@
+{
+    "providers": {
+        "awscloudformation": {
+            "AuthRoleName": "reactative-20181120210420-authRole",
+            "UnauthRoleArn": "arn:aws:iam::105630669474:role/reactative-20181120210420-unauthRole",
+            "AuthRoleArn": "arn:aws:iam::105630669474:role/reactative-20181120210420-authRole",
+            "Region": "us-west-2",
+            "DeploymentBucketName": "reactative-20181120210420-deployment",
+            "UnauthRoleName": "reactative-20181120210420-unauthRole",
+            "StackName": "reactative-20181120210420",
+            "StackId": "arn:aws:cloudformation:us-west-2:105630669474:stack/reactative-20181120210420/e826a650-ed4a-11e8-9c7e-06972e890616"
+        }
+    }
+}

@@ -1,0 +1,11 @@
+{
+    "appName": "reactnative",
+    "roleName": "pinpointLambdaRoleb67e60f1",
+    "cloudWatchPolicyName": "cloudWatchPolicyb67e60f1",
+    "pinpointPolicyName": "pinpointPolicyb67e60f1",
+    "authPolicyName": "pinpoint_amplify_b67e60f1",
+    "unauthPolicyName": "pinpoint_amplify_b67e60f1",
+    "authRoleName": "reactative-20181120210420-authRole",
+    "unauthRoleName": "reactative-20181120210420-unauthRole",
+    "IAMPrefix": "105630669474"
+}

@@ -1,21 +1,20 @@
 import React, { Component } from "react";
-import { StyleSheet, TextInput, ScrollView } from "react-native";
+import { StyleSheet, TextInput, ScrollView, Button } from "react-native";
 
 import Container from "../components/Container";
-import Button from "../components/NavButton";
 import Label from "../components/Label";
 
 export default class Login extends Component {
-  handleLogin() {
-    console.log("handling login");
-    this.props.logIn();
-  }
+  state = {
+    Username: "",
+    Password: ""
+  };
 
   render() {
     return (
       <ScrollView style={styles.scroll}>
         <Container>
-          <Label text="Username or Email" />
+          <Label text="SIGN UP TEST" />
           <TextInput style={styles.textInput} />
         </Container>
         <Container>
@@ -24,12 +23,9 @@ export default class Login extends Component {
         </Container>
         <Container>
           <Button
-            label="Submit"
+            label="Log In"
             styles={{ button: StyleSheet.alignRight, label: styles.label }}
-            onPress={this.handleLogin}
           />
-        </Container>
-        <Container>
           <Button
             label="Forgot Password"
             styles={{ button: StyleSheet.alignRight, label: styles.label }}
