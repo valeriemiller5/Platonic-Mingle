@@ -1,4 +1,12 @@
 {
+  "parser": "babel-eslint",
+  "parserOptions": {
+    "ecmaVersion": 2018,
+    "sourceType": "module",
+    "ecmaFeatures": {
+      "jsx": true
+    }
+  },
   "env": {
     "browser": true,
     "commonjs": true,
@@ -10,6 +18,10 @@
   "extends": "prettier",
   "plugins": ["prettier"],
   "rules": {
+    "no-console": 0,
+    "react/prop-types": 0,
+    "react/display-name": 1,
+    "react/no-unescaped-entities": 0,
     "no-duplicate-case": "error",
     "no-empty": "error",
     "no-extra-semi": "error",
@@ -28,12 +40,5 @@
     "quotes": ["error", "double"],
     "semi": ["error", "always"],
     "prettier/prettier": "error"
-  },
-  "parserOptions": {
-    "sourceType": "module",
-    "ecmaFeatures": {
-      "jsx": true,
-      "modules": true
-    }
   }
 }

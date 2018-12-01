@@ -1,46 +1,51 @@
 {
   "name": "mern",
   "version": "1.0.0",
-  "description": "Platonic Mingle",
+  "description": "Mern Demo",
   "main": "server.js",
   "scripts": {
     "start": "if-env NODE_ENV=production && npm run start:prod || npm run start:dev",
     "start:prod": "node server.js",
-    "start:dev": "concurrently \"nodemon --ignore 'client/*'\" \"npm run client\"",
+    "start:dev": "concurrently \"npm run server\" \"npm run client\"",
+    "start:all": "concurrently \"npm run server\" \"npm run client\" \"npm run app\"",
+    "server": "nodemon --ignore 'client/*' --ignore 'app/*' --ignore 'shared/*' || true",
     "client": "cd client && npm run start",
-    "install": "cd client && yarn install",
+    "app": "cd app && expo start",
+    "install": "cd client && yarn install && cd ../app && yarn install && cd ../shared && yarn install",
     "build": "cd client && npm run build",
     "heroku-postbuild": "npm run build"
   },
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "chai": "^4.2.0",
-    "chai-http": "^4.0.0",
-    "concurrently": "^3.5.0",
-    "eslint": "^4.19.1",
-    "eslint-config-prettier": "^2.9.0",
-    "eslint-plugin-prettier": "^2.6.2",
-    "mocha": "^5.2.0",
-    "nodemon": "^1.11.0",
-    "prettier": "^1.13.7"
+    "babel-preset-expo": "^5.0.0",
+    "concurrently": "^3.6.1",
+    "expo-cli": "^2.5.0",
+    "nodemon": "^1.18.7"
   },
   "dependencies": {
     "axios": "^0.18.0",
-    "bcrypt-nodejs": "0.0.3",
-    "chart.js": "^2.7.2",
-    "dotenv": "^6.0.0",
+    "bcrypt": "^3.0.2",
+    "bcryptjs": "^2.4.3",
+    "body-parser": "^1.18.3",
+    "connect-mongo": "^2.0.2",
+    "dotenv": "^6.1.0",
     "express": "^4.16.3",
     "express-session": "^1.15.6",
     "if-env": "^1.0.4",
-    "mysql2": "^1.5.3",
-    "npm": "^6.4.1",
+    "mongoose": "^5.3.14",
+    "morgan": "^1.9.1",
     "passport": "^0.4.0",
     "passport-local": "^1.0.0",
-    "passport-strategy": "^1.0.0",
-    "pause": "^0.1.0",
-    "react-router-dom": "^4.3.1",
-    "sequelize": "^4.38.0",
     "twitter": "^1.7.1"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/valeriemiller5/Platonic-Mingle.git"
+  },
+  "keywords": [],
+  "bugs": {
+    "url": "https://github.com/valeriemiller5/Platonic-Mingle/issues"
+  },
+  "homepage": "https://github.com/valeriemiller5/Platonic-Mingle#readme"
 }

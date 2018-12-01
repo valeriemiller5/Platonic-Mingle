@@ -1,53 +1,51 @@
-const express = require("express");
-const path = require("path");
-const PORT = process.env.PORT || 3001;
-const app = express();
-const db = require("./models");
-const bodyParser = require("body-parser");
-const session = require("express-session");
-const passport = require("./config/passport");
-const twitterRoutes = require("./routes/twitterRoutes")
-require("dotenv").config();
+// load enviromental variables
+require('dotenv').config();
 
+const bodyParser = require('body-parser');
+const path = require('path');
+const express = require('express');
+const morgan = require('morgan');
+const session = require('express-session');
+const MongoStore = require('connect-mongo')(session);
+const dbConnection = require('./server_src/db'); // loads our connection to the mongo database
+const passport = require('./server_src/passport');
+const app = express();
+
+const PORT = process.env.PORT || 8080;
+
+// Define middleware here
+app.use(morgan('dev'));
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
+app.use(
+  session({
+    secret: process.env.APP_SECRET || 'this is the default passphrase',
+    store: new MongoStore({ mongooseConnection: dbConnection }),
+    saveUninitialized: false,
+    resave: true,
+    rolling: true,
+    cookie: { maxAge: 7 * 24 * 60 * 60 * 1000 }
+  })
+);
+
+// Passport Setup
+app.use(passport.initialize());
+app.use(passport.session()); // will call the deserializeUser
 // Serve up static assets (usually on heroku)
-if (process.env.NODE_ENV === "production") {
-  app.use(express.static("client/build"));
+if (process.env.NODE_ENV === 'production') {
+  app.use(express.static('client/build'));
 }
 
-// Send every request to the React app
+// Define Express routes here
+/* Express app ROUTING */
+app.use(require('./server_src'));
+
+// Send every other request to the React app
 // Define any API routes before this runs
-app.get("*", function(req, res) {
-  res.sendFile(path.join(__dirname, "./client/public/index.html"));
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, './client/build/index.html'));
 });
 
-// Middleware
-app.use(bodyParser.urlencoded({ extended: true }));
-app.use(bodyParser.json());
-app.use(express.static("./public"));
-app.use(
-  session({ secret: "keyboard cat", resave: true, saveUninitialized: true })
-);
-app.use(passport.initialize());
-app.use(passport.session());
-
-// Routes
-require("./routes/apiRoutes")(app);
-require("./routes/htmlRoutes")(app);
-app.use("/api", twitterRoutes);
-
-var syncOptions = { force: false };
-
-if (process.env.NODE_ENV === "test") {
-  syncOptions.force = true;
-}
-
-// Starting the server, syncing our models ------------------------------------/
-db.sequelize.sync(syncOptions).then(function() {
-  app.listen(PORT, function() {
-    console.log(
-      "==> 🌎  Listening on port %s. Visit http://localhost:%s/ in your browser.",
-      PORT,
-      PORT
-    );
-  });
+app.listen(PORT, () => {
+  console.log(`🌎 ==> Server now on port ${PORT}!`); //eslint-disable-line
 });
