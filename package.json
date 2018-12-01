@@ -13,7 +13,8 @@
     "app": "cd app && expo start",
     "install": "cd client && yarn install && cd ../app && yarn install && cd ../shared && yarn install",
     "build": "cd client && npm run build",
-    "heroku-postbuild": "npm run build"
+    "heroku-postbuild": "npm run build",
+    "prepare": "node prepare.js && cd app && git init"
   },
   "author": "",
   "license": "ISC",

@@ -20,26 +20,38 @@ const theme = {
 export default class App extends React.Component {
   state = {
     user: null,
-    loggedIn: false
+    username: '',
+    password: ''
   };
 
-  componentDidMount() {
-    api.getUser().then(user => {
-      this.setState({ user });
-    });
-  }
+  // componentDidMount = () => {
+  //   this.getUser();
+  // };
 
-  login = async () => {
-    const user = await api.login('e', 'a');
+  // getUser = async () => {
+  //   const user = await api.getUser();
+  //   this.setState({ user });
+  // };
 
-    this.setState({ user });
-  };
+  // signup = async () => {
+  //   await api.signup(this.state.username, this.state.password);
+  //   this.getUser();
+  // };
 
-  logout = async () => {
-    await api.logout();
+  // login = async () => {
+  //   try {
+  //     await api.login(this.state.username, this.state.password);
+  //     this.getUser();
+  //   } catch (err) {
+  //     console.error(err);
+  //   }
+  // };
 
-    this.setState({ user: null });
-  };
+  // logout = async () => {
+  //   await api.logout();
+
+  //   this.setState({ user: null });
+  // };
 
   render() {
     if (this.state.loggedIn) {
@@ -53,7 +65,7 @@ export default class App extends React.Component {
     } else {
       return (
         <PaperProvider theme={theme}>
-          <Home handleLogin={this.logIn} />
+          <Home />
         </PaperProvider>
       );
     }
