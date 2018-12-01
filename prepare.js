@@ -6,6 +6,7 @@ fs.symlink('../../shared', './client/src/shared', 'dir', function(err) {
     console.log(
       'Unable to create symbolic link, please verify a symlink exists at ./client/src/shared that links to ../../shared'
     );
+    console.log(err);
   } else {
     console.log(
       'Created symlink at ./client/src/shared that links to ../../shared'
