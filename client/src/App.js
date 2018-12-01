@@ -21,8 +21,12 @@ class App extends Component {
   };
 
   getUser = async () => {
-    const user = await api.getUser();
-    this.setState({ user });
+    try {
+      const user = await api.getUser();
+      this.setState({ user });
+    } catch (err) {
+      console.log('Error in App');
+    }
   };
 
   signup = async () => {

@@ -26,8 +26,12 @@ export default class api extends React.Component {
   componentDidMount = () => this.config(apiHost);
 
   async getUser() {
-    const response = await axios.get('/auth/user');
-    return response.data.user;
+    try {
+      const response = await axios.get('/auth/user');
+      return response.data.user;
+    } catch (err) {
+      console.log(err);
+    }
   }
 
   async login(username, password) {

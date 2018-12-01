@@ -10,8 +10,12 @@ class api {
   }
 
   async getUser() {
-    const response = await axios.get('/auth/user');
-    return response.data.user;
+    try {
+      const response = await axios.get('/auth/user');
+      return response.data.user;
+    } catch (err) {
+      console.log('error in API');
+    }
   }
 
   async login(username, password) {
