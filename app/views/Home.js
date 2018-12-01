@@ -2,7 +2,8 @@ import React from 'react';
 import { ScrollView, View, Text, StyleSheet, SafeAreaView } from 'react-native';
 import Login from './Login';
 import { BottomNavigation } from 'react-native-paper';
-import api from '../API';
+import api from '../api.js';
+import Kitty from './Kitty';
 
 const HomeRoute = props => (
   <SafeAreaView>
@@ -10,7 +11,11 @@ const HomeRoute = props => (
   </SafeAreaView>
 );
 
-const FavoritesRoute = () => <Text>Favorites</Text>;
+const FavoritesRoute = () => (
+  <SafeAreaView>
+    <Kitty />
+  </SafeAreaView>
+);
 
 const ExploreRoute = () => <Text>Explore</Text>;
 
@@ -30,7 +35,7 @@ class Home extends React.Component {
     password: ''
   };
 
-  componentDidMount = () => {
+  componentDidMount = async () => {
     this.getUser();
   };
 
@@ -46,6 +51,7 @@ class Home extends React.Component {
         handleLogin={this.login}
         updateUsername={this.updateUsername}
         updatePassword={this.updatePassword}
+        handleSignup={this.signup}
       />
     ),
     favorites: FavoritesRoute,
@@ -53,18 +59,32 @@ class Home extends React.Component {
     explore: ExploreRoute
   });
 
-  updateUsername = username => this.setState({ username });
-  updatePassword = password => this.setState({ password });
+  updateUsername = username => {
+    this.setState({ username });
+    console.log(username);
+  };
+  updatePassword = password => {
+    this.setState({ password });
+    console.log(password);
+  };
 
   getUser = async () => {
     const user = await api.getUser();
     this.setState({ user });
+    if (user) {
+      this.setState({ index: 1 });
+    }
     console.log(user);
   };
 
   signup = async () => {
-    await api.signup(this.state.username, this.state.password);
-    this.getUser();
+    console.log('signing up...');
+    try {
+      await api.signup(this.state.username, this.state.password);
+      this.getUser();
+    } catch (err) {
+      console.log(err);
+    }
   };
 
   login = async () => {

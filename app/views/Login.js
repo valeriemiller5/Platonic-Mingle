@@ -33,48 +33,17 @@ const Login = props => (
         onPress={props.handleReset}
       />
     </Container>
+    <Container>
+      <Button
+        label="Sign Up"
+        styles={{ button: StyleSheet.alignRight, label: styles.label }}
+        onPress={props.handleSignup}
+      />
+    </Container>
   </ScrollView>
 );
 
 export default Login;
-//   handleLogin = () => {
-//     console.log('handling login');
-//     console.log(this.props);
-//   };
-
-//   handleReset() {
-//     console.log('handling reset');
-//   }
-
-//   render() {
-//     return (
-//       <ScrollView style={styles.scroll}>
-//         <Container>
-//           <Label text="Username or Email" />
-//           <TextInput style={styles.textInput} />
-//         </Container>
-//         <Container>
-//           <Label text="Password" />
-//           <TextInput secureTextEntry={true} style={styles.textInput} />
-//         </Container>
-//         <Container>
-//           <Button
-//             label="Submit"
-//             styles={{ button: StyleSheet.alignRight, label: styles.label }}
-//             onPress={this.handleLogin}
-//           />
-//         </Container>
-//         <Container>
-//           <Button
-//             label="Forgot Password"
-//             styles={{ button: StyleSheet.alignRight, label: styles.label }}
-//             onPress={this.handleReset}
-//           />
-//         </Container>
-//       </ScrollView>
-//     );
-//   }
-// }
 
 const styles = StyleSheet.create({
   scroll: {

@@ -45,29 +45,38 @@ router.post('/logout', (req, res) => {
   }
 });
 
-router.post('/signup', (req, res) => {
-  const { username, password } = req.body;
-  // ADD VALIDATION
-  User.findOne({ 'local.username': username }, (err, userMatch) => {
-    if (userMatch) {
-      return res.json({
-        error: `Sorry, already a user with the username: ${username}`
-      });
-    }
-    const newUser = new User({
-      'local.username': username,
-      'local.password': password
-    });
-    newUser.save((err, savedUser) => {
-      if (err) return res.json(err);
-
-      const cleanUser = JSON.parse(JSON.stringify(savedUser)); // deepclone hack
-      if (cleanUser.local) {
-        delete cleanUser.local.password;
+// matches /auth/signup
+router.post(
+  '/signup',
+  (req, res, next) => {
+    const { username, password } = req.body;
+    // ADD VALIDATION
+    User.findOne({ 'local.username': username }, (err, userMatch) => {
+      if (userMatch) {
+        return res.json({
+          error: `Sorry, already a user with the username: ${username}`
+        });
       }
-      return res.json(cleanUser);
+      const newUser = new User({
+        'local.username': username,
+        'local.password': password
+      });
+      newUser.save((err, savedUser) => {
+        if (err) return res.json(err);
+
+        next();
+      });
     });
-  });
-});
+  },
+  passport.authenticate('local'),
+  (req, res) => {
+    const cleanUser = JSON.parse(JSON.stringify(req.user)); // deepclone hack
+    if (cleanUser.local) {
+      console.log(`Deleting ${cleanUser.local.password}`);
+      delete cleanUser.local.password;
+    }
+    res.json({ user: cleanUser });
+  }
+);
 
 module.exports = router;

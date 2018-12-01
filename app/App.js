@@ -1,11 +1,7 @@
 import React from 'react';
 import { StyleSheet, Text, View, Button } from 'react-native';
-import api from './API';
 import { DefaultTheme, Provider as PaperProvider } from 'react-native-paper';
-
-import Login from './views/Login';
 import Home from './views/Home';
-import { Constants } from 'expo';
 
 const theme = {
   ...DefaultTheme,
