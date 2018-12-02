@@ -7,7 +7,9 @@ const Row = props => {
 
 const styles = StyleSheet.create({
   row: {
-    flexDirection: 'row'
+    justifyContent: 'flex-start',
+    flexDirection: 'row',
+    position: 'relative'
   }
 })
 
