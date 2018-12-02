@@ -9,6 +9,11 @@ class api {
     });
   }
 
+  async getTrend() {
+    const response = await axios.get('/api/twitter');
+    return response.data;
+  }
+
   async getUser() {
     const response = await axios.get('/auth/user');
     return response.data.user;

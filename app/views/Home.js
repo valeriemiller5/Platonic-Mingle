@@ -4,6 +4,7 @@ import Login from './Login';
 import { BottomNavigation } from 'react-native-paper';
 import api from '../api.js';
 import Kitty from './Kitty';
+import Trend from './Trend';
 
 const HomeRoute = props => (
   <SafeAreaView>
@@ -17,7 +18,11 @@ const FavoritesRoute = () => (
   </SafeAreaView>
 );
 
-const ExploreRoute = () => <Text>Explore</Text>;
+const ExploreRoute = () => (
+  <SafeAreaView>
+    <Trend />
+  </SafeAreaView>
+);
 
 const RecentsRoute = () => <Text>Recents</Text>;
 
@@ -28,7 +33,7 @@ class Home extends React.Component {
       { key: 'login', title: 'Login', icon: 'home' },
       { key: 'favorites', title: 'Favorites', icon: 'favorite-border' },
       { key: 'recents', title: 'Recents', icon: 'history' },
-      { key: 'explore', title: 'Explore', icon: 'search' }
+      { key: 'explore', title: 'Trends', icon: 'search' }
     ],
     user: null,
     username: '',
