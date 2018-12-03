@@ -19,12 +19,12 @@ var params = {
 };
 
 // // Retrieves book information from Twitter Trends API
-// // /api/twitter
+// // /api/twitter/
 router.get('/', (req, res) => {
   client
     .get('trends/place', params)
     .then(data => {
-      console.log('api.js line 27 ', data); // This is working
+      // console.log('api.js line 27: ', data); // This is working
       res.json(data);
     })
     .catch(err => res.json(err));

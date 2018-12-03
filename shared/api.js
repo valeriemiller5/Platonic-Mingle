@@ -11,6 +11,7 @@ class api {
 
   async getTrend() {
     const response = await axios.get('/api/twitter');
+    // console.log('api.js line 14: ', response.data); // this is working
     return response.data;
   }
 

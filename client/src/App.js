@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import api from './api';
-
 import logo from './logo.svg';
 import './App.css';
 
@@ -13,12 +12,27 @@ class App extends Component {
 
   componentDidMount = () => {
     this.getUser();
+    // this.handleTrends();
   };
 
   handleChange = event => {
     const { name, value } = event.target;
     this.setState({ [name]: value });
   };
+
+//   handleTrends = async () => {
+//     try{
+//       await api.getTrend()
+//         .then(res => {
+//             console.log(res.data);
+//             this.setState({ 
+//                 trends: res.data
+//             });
+//       })
+//     } catch (err) {
+//       console.log(err)
+//     }
+// };
 
   getUser = async () => {
     try {

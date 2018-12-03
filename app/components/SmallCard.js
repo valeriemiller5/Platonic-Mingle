@@ -13,8 +13,8 @@ const SmallCard = props => (
         />
       </View>
       <View style={{ width: '70%' }}>
-        <Text style={styles.cardTitle}>{props.title}</Text>
-        <Text style={styles.cardDetails}>{props.searchPreview}</Text>
+        <Text style={styles.cardTitle}>{props.name}</Text>
+        <Text style={styles.cardDetails}>{props.url}</Text>
       </View>
     </Row>
   </View>
