@@ -5,7 +5,7 @@ import SmallCard from '../components/SmallCard';
 import api from '../api';
 import React from 'react';
 
-export default class trend extends React.Component {
+export default class Trend extends React.Component {
   state = {
       trends: []
   }
@@ -14,15 +14,15 @@ export default class trend extends React.Component {
       this.handleGetTrend();
   }
 
-  handleGetTrend = async () => {
-    await api.getTrend()
-    .then(res => {
-        console.log('Trends.js line 20 ', res.data);
-        this.setState({ 
-            trends: res.data
-        });
-    })
-    .catch(err => console.log(err))
+  handleGetTrend = () => {
+    api.getTrend()
+      .then(res => {
+          console.log('Trends.js line 20: ', res[0].trends);
+          this.setState({ 
+              trends: res[0].trends
+          });
+      })
+      .catch(err => console.log(err))
   };
 
   render() {
@@ -44,7 +44,7 @@ export default class trend extends React.Component {
               url={trend.url}
             />
           ))}
-        <SmallCard
+        {/* <SmallCard
           image={require('../public/images/sampleImage.jpg')}
           title="Sample Article"
           searchPreview="Lorem ipsum dolor sit amet, consectetur adipiscing elit."
@@ -73,7 +73,7 @@ export default class trend extends React.Component {
           image={require('../public/images/sampleImageb.jpg')}
           title="Sample Article"
           searchPreview="Lorem ipsum dolor sit amet, consectetur adipiscing elit."
-        />
+        /> */}
         <View style={{ marginBottom: 60 }} />
       </ScrollView>
     );
