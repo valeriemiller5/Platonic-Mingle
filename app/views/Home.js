@@ -32,8 +32,8 @@ class Home extends React.Component {
     routes: [
       { key: 'login', title: 'Login', icon: 'home' },
       { key: 'favorites', title: 'Favorites', icon: 'favorite-border' },
-      { key: 'recents', title: 'Recents', icon: 'history' },
-      { key: 'explore', title: 'Trends', icon: 'search' }
+      { key: 'recents', title: 'Recents', icon: 'share' },
+      { key: 'explore', title: 'Trends', icon: 'person-outline' }
     ],
     user: null,
     username: '',
