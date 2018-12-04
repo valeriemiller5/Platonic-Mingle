@@ -1,5 +1,5 @@
 import React from 'react'
-import { Text, View, Image, StyleSheet } from 'react-native'
+import { Text, View, Image, Linking, StyleSheet } from 'react-native'
 import Row from '../components/Row'
 import LikeIcon from '../components/LikeIcon'
 
@@ -16,7 +16,7 @@ const SmallCard = props => (
       </View>
       <View style={{ width: '70%' }}>
         <Text style={styles.cardTitle}>{props.name}</Text>
-        <Text style={styles.cardDetails}>{props.url}</Text>
+        <Text onPress={() => Linking.openURL(props.url)} style={styles.cardDetails}>Click here to learn more!</Text>
       </View>
     </Row>
   </View>

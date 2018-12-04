@@ -1,4 +1,4 @@
-import { ScrollView, View, StyleSheet } from 'react-native';
+import { ScrollView, View, Linking, StyleSheet } from 'react-native';
 import Navbar from '../components/TopNavbar';
 import LargeCard from '../components/LargeCard';
 import SmallCard from '../components/SmallCard';
@@ -42,38 +42,9 @@ export default class Trend extends React.Component {
               image={require('../public/images/sampleImage.jpg')}
               name={trend.name}
               url={trend.url}
+              onPress={trend.url}
             />
           ))}
-        {/* <SmallCard
-          image={require('../public/images/sampleImage.jpg')}
-          title="Sample Article"
-          searchPreview="Lorem ipsum dolor sit amet, consectetur adipiscing elit."
-        />
-        <SmallCard
-          image={require('../public/images/sampleImagea.jpg')}
-          title="Sample Article"
-          searchPreview="Lorem ipsum dolor sit amet, consectetur adipiscing elit."
-        />
-        <SmallCard
-          image={require('../public/images/sampleImageb.jpg')}
-          title="Sample Article"
-          searchPreview="Lorem ipsum dolor sit amet, consectetur adipiscing elit."
-        />
-        <SmallCard
-          image={require('../public/images/sampleImage.jpg')}
-          title="Sample Article"
-          searchPreview="Lorem ipsum dolor sit amet, consectetur adipiscing elit."
-        />
-        <SmallCard
-          image={require('../public/images/sampleImagea.jpg')}
-          title="Sample Article"
-          searchPreview="Lorem ipsum dolor sit amet, consectetur adipiscing elit."
-        />
-        <SmallCard
-          image={require('../public/images/sampleImageb.jpg')}
-          title="Sample Article"
-          searchPreview="Lorem ipsum dolor sit amet, consectetur adipiscing elit."
-        /> */}
         <View style={{ marginBottom: 60 }} />
       </ScrollView>
     );
