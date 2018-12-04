@@ -1,5 +1,12 @@
 import React from 'react';
-import { ScrollView, View, Text, StyleSheet, SafeAreaView } from 'react-native';
+import {
+  ScrollView,
+  View,
+  Text,
+  StyleSheet,
+  SafeAreaView,
+  Button
+} from 'react-native';
 import Login from './Login';
 import { BottomNavigation } from 'react-native-paper';
 import api from '../api.js';
@@ -8,7 +15,8 @@ import Trend from './Trend';
 
 const HomeRoute = props => (
   <SafeAreaView>
-    <Login {...props} />
+    <Button title="Logout" onPress={props.handleLogout} />
+    <Trend />
   </SafeAreaView>
 );
 
@@ -24,16 +32,20 @@ const ExploreRoute = () => (
   </SafeAreaView>
 );
 
-const RecentsRoute = () => <Text>Recents</Text>;
+const MingleRoute = () => (
+  <SafeAreaView>
+    <Kitty />
+  </SafeAreaView>
+);
 
 class Home extends React.Component {
   state = {
     index: 0,
     routes: [
-      { key: 'login', title: 'Login', icon: 'home' },
+      { key: 'home', title: 'Home', icon: 'home' },
       { key: 'favorites', title: 'Favorites', icon: 'favorite-border' },
-      { key: 'recents', title: 'Recents', icon: 'share' },
-      { key: 'explore', title: 'Trends', icon: 'person-outline' }
+      { key: 'mingle', title: 'Mingle', icon: 'share' },
+      { key: 'profile', title: 'About Me', icon: 'person-outline' }
     ],
     user: null,
     username: '',
@@ -50,18 +62,10 @@ class Home extends React.Component {
   };
 
   _renderScene = BottomNavigation.SceneMap({
-    login: props => (
-      <HomeRoute
-        {...props}
-        handleLogin={this.login}
-        updateUsername={this.updateUsername}
-        updatePassword={this.updatePassword}
-        handleSignup={this.signup}
-      />
-    ),
+    home: props => <HomeRoute {...props} handleLogout={this.logout} />,
     favorites: FavoritesRoute,
-    recents: RecentsRoute,
-    explore: ExploreRoute
+    mingle: MingleRoute,
+    profile: ExploreRoute
   });
 
   updateUsername = username => {
@@ -77,7 +81,8 @@ class Home extends React.Component {
     const user = await api.getUser();
     this.setState({ user });
     if (user) {
-      this.setState({ index: 1 });
+      this.setState({ index: 0 });
+    } else {
     }
     console.log(user);
   };
@@ -108,16 +113,29 @@ class Home extends React.Component {
     this.setState({ user: null });
   };
 
-  render() {
-    return (
-      <BottomNavigation
-        navigationState={this.state}
-        onIndexChange={this._handleIndexChange}
-        renderScene={this._renderScene}
-        onPress={this.handlePress}
-      />
-    );
-  }
+  render = () => {
+    if (this.state.user) {
+      return (
+        <BottomNavigation
+          navigationState={this.state}
+          onIndexChange={this._handleIndexChange}
+          renderScene={this._renderScene}
+          onPress={this.handlePress}
+        />
+      );
+    } else {
+      return (
+        <SafeAreaView>
+          <Login
+            handleLogin={this.login}
+            updateUsername={this.updateUsername}
+            updatePassword={this.updatePassword}
+            handleSignup={this.signup}
+          />
+        </SafeAreaView>
+      );
+    }
+  };
 }
 
 export default Home;
