@@ -1,6 +1,7 @@
 import React from 'react'
 import { Text, View, Image, StyleSheet } from 'react-native'
 import Row from '../components/Row'
+import LikeIcon from '../components/LikeIcon'
 
 const SmallCard = props => (
   <View style={styles.cardView}>
@@ -11,6 +12,7 @@ const SmallCard = props => (
           source={props.image}
           resizeMode="contain"
         />
+        <LikeIcon />
       </View>
       <View style={{ width: '70%' }}>
         <Text style={styles.cardTitle}>{props.name}</Text>
@@ -24,7 +26,7 @@ export default SmallCard
 
 const styles = StyleSheet.create({
   cardView: {
-    height: 100,
+    height: 130,
     padding: 0,
     marginLeft: 15,
     marginRight: 15,
