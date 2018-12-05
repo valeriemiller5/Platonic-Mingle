@@ -10,8 +10,8 @@ import {
 import Login from './Login';
 import { BottomNavigation } from 'react-native-paper';
 import api from '../api.js';
-import Kitty from './Kitty';
 import Trend from './Trend';
+import Aboutme from './Aboutme';
 
 const HomeRoute = props => (
   <SafeAreaView style={{ flex: 1 }}>
@@ -23,21 +23,21 @@ const HomeRoute = props => (
 const FavoritesRoute = props => (
   <SafeAreaView>
     <Button title="Logout" onPress={props.handleLogout} />
-    <Kitty />
+    <Trend />
   </SafeAreaView>
 );
 
 const ExploreRoute = props => (
   <SafeAreaView>
     <Button title="Logout" onPress={props.handleLogout} />
-    <Trend />
+    <Aboutme />
   </SafeAreaView>
 );
 
 const MingleRoute = props => (
   <SafeAreaView>
     <Button title="Logout" onPress={props.handleLogout} />
-    <Kitty />
+    <Trend />
   </SafeAreaView>
 );
 
@@ -52,7 +52,8 @@ class Home extends React.Component {
     ],
     user: null,
     username: '',
-    password: ''
+    password: '',
+    favorites: []
   };
 
   componentDidMount = async () => {
