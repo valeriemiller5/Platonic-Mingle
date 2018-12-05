@@ -1,8 +1,5 @@
 import { SafeAreaView, ScrollView, View, StyleSheet } from 'react-native';
 import Navbar from '../components/TopNavbar';
-import LargeCard from '../components/LargeCard';
-import SmallCard from '../components/SmallCard';
-import api from '../api';
 import React from 'react';
 import {
   Container,
