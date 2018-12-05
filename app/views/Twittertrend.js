@@ -35,7 +35,9 @@ export default class Twittertrend extends React.Component {
           {trends.map(trend => (
             <SmallCard
               key={trend.name}
-              image={null}
+              image={
+                'https://cdn0.iconfinder.com/data/icons/usefull-geo-points-for-maps/512/url-link-href-share-deep-blue-square-512.png'
+              }
               name={trend.name}
               url={trend.url}
             />
