@@ -14,60 +14,15 @@ import {
   Text
 } from 'native-base';
 import Tab1 from './Twittertrend';
-import Tab2 from './Twittertrend';
+import Tab2 from './Buzzfeed';
 // import Tab3 from './tabThree';
 
 export default class Trend extends React.Component {
-  //   state = {
-  //     trends: []
-  //   };
-
-  //   componentDidMount() {
-  //     this.handleGetTrend();
-  //   }
-
-  //   handleGetTrend = () => {
-  //     api
-  //       .getTrend()
-  //       .then(res => {
-  //         console.log('Trends.js line 20: ', res[0].trends);
-  //         this.setState({
-  //           trends: res[0].trends
-  //         });
-  //       })
-  //       .catch(err => console.log(err));
-  //   };
-
-  //   render() {
-  //     const { trends } = this.state;
-
-  //     return (
-  //       <ScrollView style={styles.background}>
-  //         <Navbar source={require('../public/images/logo.png')} />
-  //         <LargeCard
-  //           image={require('../public/images/sampleImage(2).jpg')}
-  //           title="Sample Article"
-  //           searchPreview="Lorem ipsum dolor sit amet, consectetur adipiscing elit."
-  //         />
-  //         {trends.map(trend => (
-  //           <SmallCard
-  //             key={trend.name}
-  //             image={require('../public/images/sampleImage.jpg')}
-  //             name={trend.name}
-  //             url={trend.url}
-  //           />
-  //         ))}
-  //         <View style={{ marginBottom: 60 }} />
-  //       </ScrollView>
-  //     );
-  //   }
-
   render() {
     return (
       <SafeAreaView style={styles.background}>
         <Navbar source={require('../public/images/logo.png')} />
-        {/* <ScrollView> */}
-        <Container>
+        <Container style={{ flex: 1 }}>
           <Header hasTabs />
           <Tabs>
             <Tab
@@ -91,7 +46,6 @@ export default class Trend extends React.Component {
               <Tab2 />
             </Tab>
           </Tabs>
-          {/* </ScrollView> */}
         </Container>
       </SafeAreaView>
     );
@@ -100,7 +54,8 @@ export default class Trend extends React.Component {
 
 const styles = StyleSheet.create({
   background: {
-    backgroundColor: '#e1e1e1'
+    backgroundColor: '#e1e1e1',
+    flex: 1
   },
   bottom: {
     position: 'absolute',

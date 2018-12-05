@@ -20,51 +20,12 @@ export default class App extends React.Component {
     password: ''
   };
 
-  // componentDidMount = () => {
-  //   this.getUser();
-  // };
-
-  // getUser = async () => {
-  //   const user = await api.getUser();
-  //   this.setState({ user });
-  // };
-
-  // signup = async () => {
-  //   await api.signup(this.state.username, this.state.password);
-  //   this.getUser();
-  // };
-
-  // login = async () => {
-  //   try {
-  //     await api.login(this.state.username, this.state.password);
-  //     this.getUser();
-  //   } catch (err) {
-  //     console.error(err);
-  //   }
-  // };
-
-  // logout = async () => {
-  //   await api.logout();
-
-  //   this.setState({ user: null });
-  // };
-
   render() {
-    if (this.state.loggedIn) {
-      return (
-        <PaperProvider theme={theme}>
-          <View>
-            <Home />
-          </View>
-        </PaperProvider>
-      );
-    } else {
-      return (
-        <PaperProvider theme={theme}>
-          <Home />
-        </PaperProvider>
-      );
-    }
+    return (
+      <PaperProvider theme={theme}>
+        <Home />
+      </PaperProvider>
+    );
   }
 }
 

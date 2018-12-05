@@ -10,8 +10,8 @@ router.get('/', (req, res) => {
     }`
   })
     .then(data => {
-      console.log(data.data); // This is working
-      res.json(data);
+      console.log('newsRoutes got' + data); // This is working
+      res.json(data.data);
     })
     .catch(err => res.json(err));
 });

@@ -35,7 +35,7 @@ export default class Twittertrend extends React.Component {
           {trends.map(trend => (
             <SmallCard
               key={trend.name}
-              image={require('../public/images/sampleImage.jpg')}
+              image={null}
               name={trend.name}
               url={trend.url}
             />
