@@ -14,26 +14,29 @@ import Kitty from './Kitty';
 import Trend from './Trend';
 
 const HomeRoute = props => (
+  <SafeAreaView style={{ flex: 1 }}>
+    <Button title="Logout" onPress={props.handleLogout} />
+    <Trend />
+  </SafeAreaView>
+);
+
+const FavoritesRoute = props => (
+  <SafeAreaView>
+    <Button title="Logout" onPress={props.handleLogout} />
+    <Kitty />
+  </SafeAreaView>
+);
+
+const ExploreRoute = props => (
   <SafeAreaView>
     <Button title="Logout" onPress={props.handleLogout} />
     <Trend />
   </SafeAreaView>
 );
 
-const FavoritesRoute = () => (
+const MingleRoute = props => (
   <SafeAreaView>
-    <Kitty />
-  </SafeAreaView>
-);
-
-const ExploreRoute = () => (
-  <SafeAreaView>
-    <Trend />
-  </SafeAreaView>
-);
-
-const MingleRoute = () => (
-  <SafeAreaView>
+    <Button title="Logout" onPress={props.handleLogout} />
     <Kitty />
   </SafeAreaView>
 );
@@ -63,9 +66,11 @@ class Home extends React.Component {
 
   _renderScene = BottomNavigation.SceneMap({
     home: props => <HomeRoute {...props} handleLogout={this.logout} />,
-    favorites: FavoritesRoute,
-    mingle: MingleRoute,
-    profile: ExploreRoute
+    favorites: props => (
+      <FavoritesRoute {...props} handleLogout={this.logout} />
+    ),
+    mingle: props => <MingleRoute {...props} handleLogout={this.logout} />,
+    profile: props => <ExploreRoute {...props} handleLogout={this.logout} />
   });
 
   updateUsername = username => {

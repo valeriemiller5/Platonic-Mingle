@@ -15,6 +15,11 @@ class api {
     return response.data;
   }
 
+  async getNews() {
+    const response = await axios.get('/api/news');
+    return response.data;
+  }
+
   async getUser() {
     const response = await axios.get('/auth/user');
     return response.data.user;

@@ -1,7 +1,7 @@
-import React from 'react'
-import { Text, View, Image, Linking, StyleSheet } from 'react-native'
-import Row from '../components/Row'
-import LikeIcon from '../components/LikeIcon'
+import React from 'react';
+import { Text, View, Image, Linking, StyleSheet } from 'react-native';
+import Row from '../components/Row';
+import LikeIcon from '../components/LikeIcon';
 
 const SmallCard = props => (
   <View style={styles.cardView}>
@@ -9,20 +9,28 @@ const SmallCard = props => (
       <View style={{ width: '30%' }}>
         <Image
           style={{ marginLeft: 5, width: null, height: 100 }}
-          source={props.image}
+          source={{
+            uri: `${props.image}` || require('../public/images/sampleImage.jpg')
+          }}
           resizeMode="contain"
         />
         <LikeIcon />
       </View>
       <View style={{ width: '70%' }}>
         <Text style={styles.cardTitle}>{props.name}</Text>
-        <Text onPress={() => Linking.openURL(props.url)} style={styles.cardDetails}>Click here to learn more!</Text>
+        <Text style={styles.cardDetails}>{props.description}</Text>
+        <Text
+          onPress={() => Linking.openURL(props.url)}
+          style={styles.cardDetails}
+        >
+          Click here to learn more!
+        </Text>
       </View>
     </Row>
   </View>
-)
+);
 
-export default SmallCard
+export default SmallCard;
 
 const styles = StyleSheet.create({
   cardView: {
@@ -32,7 +40,7 @@ const styles = StyleSheet.create({
     marginRight: 15,
     marginTop: 5,
     marginBottom: 5,
-    backgroundColor: '#fef9f6',
+    backgroundColor: '#fef9f6'
   },
   cardTitle: {
     fontSize: 16,
@@ -53,4 +61,4 @@ const styles = StyleSheet.create({
     color: '#43484d',
     width: '100%'
   }
-})
+});
