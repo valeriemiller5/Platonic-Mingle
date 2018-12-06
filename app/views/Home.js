@@ -30,7 +30,7 @@ const FavoritesRoute = props => (
 const ExploreRoute = props => (
   <SafeAreaView>
     <Button title="Logout" onPress={props.handleLogout} />
-    <Trend />
+    <Text>This will include the User's Profile</Text>
   </SafeAreaView>
 );
 

@@ -30,24 +30,13 @@ router.get('/', (req, res) => {
     .catch(err => res.json(err));
 });
 
-// // client.get('trends/place', params, function(err, data, res) {
-// //     if(!err) {
-// //         for(let i = 0; i < data.length; i++) {
-// //             console.log(data[i]);
-// //         }
-// //         return res.render("/", data);
-// //     } else {
-// //         console.log(err)
-// //     }
-// // })
-
 // // Matches with "/api/home"
-// router
-//   .route('/home/')
-//   .get(trendsController.search)
-//   .post(trendsController.create);
+router
+  .route('/favs/')
+  .get(trendsController.search)
+  .post(trendsController.create);
 
-// // Matches with "/api/saved/:id"
+// // Matches with "/api/favs/:id"
 // router
 //   .route('/saved/:id')
 //   .get(trendsController.search)
