@@ -1,11 +1,13 @@
 import { SafeAreaView, ScrollView, View, StyleSheet } from 'react-native';
-import SmallCard from '../components/SmallCard';
+import LargeCard from '../components/LargeCard';
 import api from '../api';
 import React from 'react';
+import LikeIcon from '../components/LikeIcon';
 
 export default class News extends React.Component {
   state = {
-    trends: []
+    trends: [],
+    like: false
   };
 
   componentDidMount() {
@@ -16,13 +18,33 @@ export default class News extends React.Component {
     api
       .getNews()
       .then(res => {
-        console.log(res.articles);
+        // console.log(res.articles);
         this.setState({
           trends: res.articles
         });
       })
       .catch(err => console.log(err));
   };
+
+  handleSaveFav = () => {
+    // let favTrend = this.state.trends
+    // let save = event.target.getAttribute('id');
+    // console.log('the id of this article is ', save);
+    favTrend.map(fav => {
+        // if(save === trend.id) {
+            api.createTrend({
+                title: fav.articles.title,
+                description: fav.articles.description,
+                url: fav.articles.url,
+                image: fav.articles.urlToImage
+            })
+            .then(res => {
+                console.log("Data has been saved to database");
+            })
+            .catch(err => console.log(err))
+            // }
+    })
+   }
 
   render() {
     const { trends } = this.state;
@@ -31,12 +53,13 @@ export default class News extends React.Component {
       <View style={{ flex: 1 }}>
         <ScrollView style={styles.background}>
           {trends.map(trend => (
-            <SmallCard
+            <LargeCard
               key={trend.title}
               image={trend.urlToImage}
               name={trend.title}
               url={trend.url}
               description={trend.description}
+              click={this.handleSaveFav}
             />
           ))}
           <View style={{ marginBottom: 60 }} />

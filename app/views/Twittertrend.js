@@ -18,7 +18,7 @@ export default class Twittertrend extends React.Component {
     api
       .getTrend()
       .then(res => {
-        console.log('Trends.js line 20: ', res[0].trends);
+        // console.log('Trends.js line 20: ', res[0].trends);
         this.setState({
           trends: res[0].trends
         });

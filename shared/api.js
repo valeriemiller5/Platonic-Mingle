@@ -20,6 +20,11 @@ class api {
     return response.data;
   }
 
+  async createTrend(trendData) {
+    const response = await axios.post("/api/favs", trendData);
+    return response.data;
+  }
+
   async getUser() {
     const response = await axios.get('/auth/user');
     return response.data.user;
