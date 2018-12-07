@@ -7,9 +7,10 @@ export default class LikeIcon extends React.Component {
    super();
    this.state = { heartIcon: 'ios-heart-empty', like: false };
  }
- toggleLike() {
+ toggleLike(props) {
    if (this.state.like) {
      this.setState({ heartIcon: 'ios-heart', like: false });
+     {props.onPress};
    } else if (!this.state.like) {
      this.setState({ heartIcon: 'ios-heart-empty', like: true });
    }
