@@ -2,12 +2,10 @@ import { SafeAreaView, ScrollView, View, StyleSheet } from 'react-native';
 import LargeCard from '../components/LargeCard';
 import api from '../api';
 import React from 'react';
-import LikeIcon from '../components/LikeIcon';
 
 export default class News extends React.Component {
   state = {
-    trends: [],
-    like: false
+    trends: []
   };
 
   componentDidMount() {
@@ -26,23 +24,24 @@ export default class News extends React.Component {
       .catch(err => console.log(err));
   };
 
-  handleSaveFav = () => {
-    // let favTrend = this.state.trends
-    // let save = event.target.getAttribute('id');
-    // console.log('the id of this article is ', save);
+  handleSaveFav = e => {
+    let favTrend = this.state.trends
+    console.log(favTrend[0].source.name)
     favTrend.map(fav => {
-        // if(save === trend.id) {
-            api.createTrend({
-                title: fav.articles.title,
-                description: fav.articles.description,
-                url: fav.articles.url,
-                image: fav.articles.urlToImage
-            })
-            .then(res => {
-                console.log("Data has been saved to database");
-            })
-            .catch(err => console.log(err))
-            // }
+        console.log(fav.source.name)
+        // if(save === this.id) {
+          // console.log(fav)
+            // api.createTrend({
+            //     title: fav.title,
+            //     description: fav.description,
+            //     url: fav.url,
+            //     image: fav.urlToImage
+            // })
+            // .then(res => {
+            //     console.log("Data has been saved to database");
+            // })
+            // .catch(err => console.log(err))
+        // }
     })
    }
 
@@ -55,11 +54,12 @@ export default class News extends React.Component {
           {trends.map(trend => (
             <LargeCard
               key={trend.title}
+              id={trend.source.name}
               image={trend.urlToImage}
               name={trend.title}
               url={trend.url}
               description={trend.description}
-              click={this.handleSaveFav}
+              click={this.handleSaveFav.bind(this)}
             />
           ))}
           <View style={{ marginBottom: 60 }} />

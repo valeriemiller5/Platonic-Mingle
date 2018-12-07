@@ -105,8 +105,8 @@ const styles = StyleSheet.create({
     flexDirection: 'column'
   },
   textInput: {
-    backgroundColor: '#0d8898',
-    borderColor: '#0d8898',
+    backgroundColor: '#00ff0080',
+    borderColor: '#00ff0080',
     height: 30,
     borderRadius: 10,
     borderWidth: 1

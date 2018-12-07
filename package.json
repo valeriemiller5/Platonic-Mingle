@@ -1,6 +1,9 @@
 {
   "name": "mern",
   "version": "1.0.0",
+  "engines": {
+    "node": "v8.11.2"
+  },
   "description": "Mern Demo",
   "main": "server.js",
   "scripts": {
@@ -39,7 +42,8 @@
     "morgan": "^1.9.1",
     "passport": "^0.4.0",
     "passport-local": "^1.0.0",
-    "twitter": "^1.7.1"
+    "twitter": "^1.7.1",
+    "typescript": "^3.2.1"
   },
   "repository": {
     "type": "git",
