@@ -9,15 +9,12 @@
   "scripts": {
     "start": "if-env NODE_ENV=production && npm run start:prod || npm run start:dev",
     "start:prod": "node server.js",
-    "start:dev": "concurrently \"npm run server\" \"npm run client\"",
-    "start:all": "concurrently \"npm run server\" \"npm run client\" \"npm run app\"",
+    "start:dev": "concurrently \"npm run server\"",
+    "start:all": "concurrently \"npm run server\" \"npm run app\"",
     "server": "nodemon --ignore 'client/*' --ignore 'app/*' --ignore 'shared/*' || true",
-    "client": "cd client && npm run start",
     "app": "cd app && expo start",
     "install": "cd client && yarn install && cd ../app && yarn install && cd ../shared && yarn install",
-    "build": "cd client && npm run build",
-    "heroku-postbuild": "npm run build",
-    "prepare": "node prepare.js && cd app && git init"
+    "build": "cd client && npm run build"
   },
   "author": "",
   "license": "ISC",
