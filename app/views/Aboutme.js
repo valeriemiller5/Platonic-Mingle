@@ -17,17 +17,20 @@ import {
   Right,
   Body,
   Title,
-  Subtitle
+  Subtitle,
+  Textarea
 } from 'native-base';
 import React from 'react';
+import api from '../api.js';
 
 export default class Aboutme extends React.Component {
   state = {
+    user: null,
     buttonPressed: false,
     firstName: '',
     lastName: '',
     age: '',
-    sex: ''
+    bio: ''
   };
 
   constructor(props) {
@@ -42,44 +45,103 @@ export default class Aboutme extends React.Component {
     });
   }
 
+  componentDidMount = async () => this.getUser();
+
   handleButtonPress = () => this.setState({ buttonPressed: true });
+
+  handleBack = () => this.setState({ buttonPressed: false });
+
+  handleSubmit = () => {
+    console.log('submitted!');
+    try {
+      api.setProfile({
+        userName: this.state.user,
+        firstName: this.state.firstName,
+        lastName: this.state.lastName,
+        age: this.state.age,
+        gender: this.state.selected2,
+        bio: this.state.bio
+      });
+    } catch (err) {
+      console.log(err);
+    }
+    this.setState({ buttonPressed: false });
+  };
+
+  updateFirst = text => {
+    console.log(text);
+    this.setState({ firstName: text });
+  };
+  updateLast = text => {
+    console.log(text);
+    this.setState({ lastName: text });
+  };
+  updateAge = text => {
+    console.log(text);
+    this.setState({ age: text });
+  };
+  updateBio = text => {
+    console.log(text);
+    this.setState({ bio: text });
+  };
+
+  getUser = async () => {
+    const user = await api.getUser();
+    this.setState({ user: user.local.username });
+  };
 
   render() {
     if (this.state.buttonPressed) {
       return (
         <ScrollView style={styles.background}>
-          <Container style={{ padding: 15 }}>
+          <Container style={{ padding: 10 }}>
             <Header span>
               <Left>
-                <Button hasText transparent style={{ height: 30 }}>
+                <Button
+                  onPress={this.handleBack}
+                  hasText
+                  transparent
+                  style={{ height: 100 }}
+                >
                   <Icon name="ios-arrow-dropleft" />
                   <Text>Cancel</Text>
                 </Button>
               </Left>
               <Body>
-                <Title>Tell Us About Yourself</Title>
+                <Text style={{ width: 200, paddingRight: 15, marginBottom: 5 }}>
+                  Tell Us About You
+                </Text>
                 <Subtitle>
                   Disclaimer: Platonic Mingle will not distribute your data to
                   third parties unless it's for money
                 </Subtitle>
               </Body>
               <Right>
-                <Button hasText transparent style={{ height: 30 }}>
+                <Button
+                  onPress={this.handleSubmit}
+                  hasText
+                  transparent
+                  style={{ height: 100 }}
+                >
                   <Text>Submit</Text>
                 </Button>
               </Right>
             </Header>
             <Content>
-              <Form>
+              <Form style={{ paddingHorizontal: 50 }}>
                 <Item floatingLabel rounded last>
                   <Label>Your First Name</Label>
-                  <Input />
+                  <Input onChangeText={this.updateFirst} />
                 </Item>
                 <Item floatingLabel rounded last>
                   <Label>Your Last Name</Label>
-                  <Input />
+                  <Input onChangeText={this.updateLast} />
                 </Item>
-                <Item style={{ paddingTop: 5 }} picker>
+                <Item floatingLabel rounded last>
+                  <Label>Your Age</Label>
+                  <Input onChangeText={this.updateAge} />
+                </Item>
+                <Item style={{ paddingTop: 10 }} picker>
                   <Picker
                     mode="dropdown"
                     iosIcon={<Icon name="ios-man" />}
@@ -90,14 +152,23 @@ export default class Aboutme extends React.Component {
                     selectedValue={this.state.selected2}
                     onValueChange={this.onValueChange2.bind(this)}
                   >
-                    <Picker.Item label="Male" value="key0" />
-                    <Picker.Item label="Female" value="key1" />
-                    <Picker.Item label="Both" value="key2" />
-                    <Picker.Item label="Neither" value="key3" />
-                    <Picker.Item label="Trans" value="key4" />
-                    <Picker.Item label="Unsure" value="key5" />
-                    <Picker.Item label="Nonyabusiness" value="key6" />
+                    <Picker.Item label="Male" value="Male" />
+                    <Picker.Item label="Female" value="Female" />
+                    <Picker.Item label="Both" value="Both" />
+                    <Picker.Item label="Neither" value="Neither" />
+                    <Picker.Item label="Trans" value="Trans" />
+                    <Picker.Item label="Unsure" value="Unsure" />
+                    <Picker.Item label="Nonyabusiness" value="Nonyabusiness" />
                   </Picker>
+                </Item>
+                <Item style={{ paddingRight: 10, paddingTop: 20 }}>
+                  <Textarea
+                    style={{ width: '100%' }}
+                    onChangeText={this.updateBio}
+                    rowSpan={7}
+                    bordered
+                    placeholder="Short Bio"
+                  />
                 </Item>
               </Form>
             </Content>
