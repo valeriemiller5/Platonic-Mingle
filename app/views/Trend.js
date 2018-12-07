@@ -20,7 +20,6 @@ export default class Trend extends React.Component {
       <SafeAreaView style={styles.background}>
         <Navbar source={require('../public/images/logo.png')} />
         <Container style={{ flex: 1 }}>
-          <Header hasTabs />
           <Tabs>
             <Tab
               heading={

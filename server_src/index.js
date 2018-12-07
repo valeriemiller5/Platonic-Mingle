@@ -5,5 +5,6 @@ router.use('/auth', require('./auth'));
 router.use('/api', require('./api'));
 router.use('/api/twitter', require('./routes/twitterRoutes'));
 router.use('/api/news', require('./routes/newsRoutes'));
+router.use('/api/create_profile', require('./routes/profileRoutes'));
 
 module.exports = router;
