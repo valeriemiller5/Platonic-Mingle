@@ -8,7 +8,7 @@ const SmallCard = props => (
     <Row>
       <View style={{ width: '30%' }}>
         <Image
-          style={{ marginLeft: 5, width: null, height: 100 }}
+          style={{ marginTop: 5, marginLeft: 5, width: null, height: 100 }}
           source={{
             uri: `${props.image}` || require('../public/images/sampleImage.jpg')
           }}
@@ -43,7 +43,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#fef9f6'
   },
   cardTitle: {
-    fontSize: 16,
+    fontSize: 14,
     fontWeight: 'bold',
     textAlign: 'left',
     marginTop: 20,

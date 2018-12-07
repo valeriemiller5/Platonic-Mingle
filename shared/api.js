@@ -45,6 +45,12 @@ class api {
     const response = await axios.post('/auth/logout');
     return response.data.user;
   }
+
+  async setProfile(profile) {
+    const response = await axios.post('/api/create_profile', { profile });
+    console.log(response);
+    return response.data;
+  }
 }
 
 module.exports = api;

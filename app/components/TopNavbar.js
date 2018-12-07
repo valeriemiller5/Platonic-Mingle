@@ -1,23 +1,23 @@
-import React from 'react'
-import { StyleSheet, View, Image } from 'react-native'
- export default (Navbar = props => (
+import React from 'react';
+import { StyleSheet, View, Image } from 'react-native';
+export default (Navbar = props => (
   <View>
     <View style={styles.navbar}>
       <View>
         <Image
           style={styles.image}
           source={props.source}
-          resizeMode='contain'
-          alignSelf='center'
+          resizeMode="contain"
+          alignSelf="center"
         />
       </View>
     </View>
   </View>
-))
- const styles = StyleSheet.create({
+));
+const styles = StyleSheet.create({
   navbar: {
-    paddingTop: '15%',
-    height: 150,
+    paddingTop: '10%',
+    height: 130,
     resizeMode: 'stretch',
     backgroundColor: '#3b5b9d'
   },
@@ -34,4 +34,4 @@ import { StyleSheet, View, Image } from 'react-native'
     color: 'white',
     fontWeight: 'bold'
   }
-})
+});

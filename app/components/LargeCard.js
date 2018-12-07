@@ -30,9 +30,9 @@ const LargeCard = props => (
       </View>
     </Row>
   </View>
-)
+);
 
-export default LargeCard
+export default LargeCard;
 
 const styles = StyleSheet.create({
   cardView: {
@@ -40,9 +40,9 @@ const styles = StyleSheet.create({
     margin: 15,
     marginTop: 5,
     marginBottom: 2,
-    backgroundColor: '#fef9f6',
+    backgroundColor: '#fef9f6'
   },
-  image: { width: null, height: 240, marginTop: 0},
+  image: { width: null, height: 240, marginTop: 0 },
   cardTitle: {
     fontSize: 16,
     fontWeight: 'bold',
@@ -59,4 +59,4 @@ const styles = StyleSheet.create({
     marginBottom: 10,
     color: '#43484d'
   }
-})
+});

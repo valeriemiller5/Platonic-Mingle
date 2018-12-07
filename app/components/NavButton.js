@@ -29,5 +29,3 @@ const styles = StyleSheet.create({
 });
 
 export default NavButton;
-
-//4d6391
