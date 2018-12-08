@@ -8,6 +8,7 @@ import {
   Button
 } from 'react-native';
 import Login from './Login';
+import Logout from './Logout';
 import { BottomNavigation } from 'react-native-paper';
 import api from '../api.js';
 import Trend from './Trend';
@@ -48,8 +49,7 @@ const MingleRoute = props => (
 
 const LogOut = props => (
   <SafeAreaView>
-    <Button title="Logout" onPress={props.handleLogout} />
-    <Login />
+    <Logout {...props} />
   </SafeAreaView>
 )
 
@@ -112,7 +112,7 @@ class Home extends React.Component {
         // handleLogout={this.logout}
       />
     ),
-    logout: props => <LogOut {...props} handleLogout={this.logout} />
+    logout: () => <LogOut handleLogout={this.logout} />
   });
 
   updateUsername = username => {
@@ -156,7 +156,6 @@ class Home extends React.Component {
 
   logout = async () => {
     await api.logout();
-
     this.setState({ user: null });
   };
 

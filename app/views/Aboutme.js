@@ -178,8 +178,8 @@ export default class Aboutme extends React.Component {
                   <Item style={{ paddingTop: 10 }} picker>
                     <Picker
                       mode="dropdown"
-                      Ionicons={
-                        <Ionicons name={this.state.manIcon} size={25} />
+                      iosIcon={
+                        <Ionicons name={this.state.manIcon} size={10} />
                       }
                       style={{ width: 200 }}
                       placeholder="Select Your Gender"
