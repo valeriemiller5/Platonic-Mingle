@@ -24,8 +24,8 @@ export default class Trend extends React.Component {
             <Tab
               heading={
                 <TabHeading>
-                  <Icon name="logo-twitter" />
-                  <Text>Twitter Trends</Text>
+                  <Icon name="ios-paper" />
+                  <Text>Buzzfeed News</Text>
                 </TabHeading>
               }
             >
@@ -34,8 +34,8 @@ export default class Trend extends React.Component {
             <Tab
               heading={
                 <TabHeading>
-                  <Icon name="ios-paper" />
-                  <Text>Buzzfeed News</Text>
+                  <Icon name="logo-twitter" />
+                  <Text>Twitter Trends</Text>
                 </TabHeading>
               }
             >
