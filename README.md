@@ -9,6 +9,10 @@ Currently in the works:
  * 'Mingle' option, where users will be matched to each other based on their profile and favorites.  Make friends without leaving the confort of your house!
  * Web-based app, in case you want to give your phone a rest
 
+Demo of the current app:
+ 
+![part one](demo_videos/demo_part1.gif)  ![part two](demo_videos/demo_part2.gif)
+
 ## Getting Started
 Since this is a mobile app built with React-Native, only the server is deployed to Heroku [here](https://platonic-mingle.herokuapp.com/).  In order to see this app, the user will need to run the code from the [repository](https://github.com/valeriemiller5/Platonic-Mingle) locally, then use `yarn start:all` in the terminal to start the app and the server.
 
