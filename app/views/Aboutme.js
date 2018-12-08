@@ -1,4 +1,4 @@
-import { ScrollView, View, StyleSheet } from 'react-native';
+import { ScrollView, View, StyleSheet, Image } from 'react-native';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import Navbar from '../components/TopNavbar';
 import ProfileCard from '../components/ProfileCard';
@@ -17,7 +17,12 @@ import {
   Right,
   Root,
   Body,
-  Textarea
+  Textarea,
+  Title,
+  Thumbnail,
+  Card,
+  CardItem,
+  Icon
 } from 'native-base';
 import { AppLoading, Font } from 'expo';
 import React from 'react';
@@ -30,7 +35,10 @@ export default class Aboutme extends React.Component {
     firstName: '',
     lastName: '',
     age: '',
-    bio: ''
+    bio: '',
+    hasProfile: false,
+    setup: false,
+    profile: false
   };
 
   constructor(props) {
@@ -51,11 +59,11 @@ export default class Aboutme extends React.Component {
 
   componentWillMount = async () => {
     await Font.loadAsync({
-      Roboto: require("native-base/Fonts/Roboto.ttf"),
-      Roboto_medium: require("native-base/Fonts/Roboto_medium.ttf")
+      Roboto: require('native-base/Fonts/Roboto.ttf'),
+      Roboto_medium: require('native-base/Fonts/Roboto_medium.ttf')
     });
     this.setState({ loading: false });
-  }
+  };
 
   componentDidMount = async () => await this.getUser();
 
@@ -78,6 +86,7 @@ export default class Aboutme extends React.Component {
       console.log(err);
     }
     this.setState({ buttonPressed: false });
+    this.setState({ profile: true });
   };
 
   updateFirst = text => {
@@ -110,123 +119,170 @@ export default class Aboutme extends React.Component {
         </Root>
       );
     }
-    if (this.state.buttonPressed) {
-      return (
-        <ScrollView style={styles.background}>
-          <Container style={{ padding: 10 }}>
-            <Header span style={{ backgroundColor: '#add8e6'}}>
-              <Left>
-                <Button
-                  onPress={this.handleBack}
-                  hasText
-                  transparent
-                  style={{ height: 100 }}
-                >
-                  <Ionicons 
-                    name={this.state.arroIcon}
-                    size={25}
-                  />
-                  <Text>Cancel</Text>
-                </Button>
-              </Left>
-              <Body>
-                <Text style={{ color: 'white', marginLeft: 5, fontSize: 20, width: 200, paddingRight: 15, height: 50 }}>
-                  Tell Us About You
-                </Text>
-              </Body>
-              <Right>
-                <Button
-                  onPress={this.handleSubmit}
-                  hasText
-                  transparent
-                  style={{ height: 100 }}
-                >
-                  <Text>Submit</Text>
-                </Button>
-              </Right>
-            </Header>
-            <Content>
-              <Form style={{ paddingHorizontal: 50 }}>
-                <Item floatingLabel rounded last>
-                  <Label>Your First Name</Label>
-                  <Input onChangeText={this.updateFirst} />
-                </Item>
-                <Item floatingLabel rounded last>
-                  <Label>Your Last Name</Label>
-                  <Input onChangeText={this.updateLast} />
-                </Item>
-                <Item floatingLabel rounded last>
-                  <Label>Your Age</Label>
-                  <Input onChangeText={this.updateAge} />
-                </Item>
-                <Item style={{ paddingTop: 10 }} picker>
-                  <Picker
-                    mode="dropdown"
-                    Ionicons={<Ionicons 
-                                name={this.state.manIcon}
-                                size={25}
-                              />}
-                    style={{ width: 200 }}
-                    placeholder="Select Your Gender"
-                    placeholderStyle={{ color: '#bfc6ea' }}
-                    placeholderIconColor="#007aff"
-                    selectedValue={this.state.selected2}
-                    onValueChange={this.onValueChange2.bind(this)}
+    if (!this.state.profile) {
+      if (this.state.buttonPressed) {
+        return (
+          <ScrollView style={styles.background}>
+            <Container style={{ padding: 10 }}>
+              <Header span style={{ backgroundColor: '#add8e6' }}>
+                <Left>
+                  <Button
+                    onPress={this.handleBack}
+                    hasText
+                    transparent
+                    style={{ height: 100 }}
                   >
-                    <Picker.Item label="Male" value="Male" />
-                    <Picker.Item label="Female" value="Female" />
-                    <Picker.Item label="Both" value="Both" />
-                    <Picker.Item label="Neither" value="Neither" />
-                    <Picker.Item label="Trans" value="Trans" />
-                    <Picker.Item label="Unsure" value="Unsure" />
-                    <Picker.Item label="Nonyabusiness" value="Nonyabusiness" />
-                  </Picker>
-                </Item>
-                <Item style={{ paddingRight: 10, paddingTop: 20 }}>
-                  <Textarea
-                    style={{ width: '100%' }}
-                    onChangeText={this.updateBio}
-                    rowSpan={7}
-                    bordered
-                    placeholder="Short Bio"
-                  />
-                </Item>
-              </Form>
-            </Content>
-          </Container>
-        </ScrollView>
-      );
+                    <Ionicons name={this.state.arroIcon} size={25} />
+                    <Text>Cancel</Text>
+                  </Button>
+                </Left>
+                <Body>
+                  <Text
+                    style={{
+                      color: 'white',
+                      marginLeft: 5,
+                      fontSize: 20,
+                      width: 200,
+                      paddingRight: 15,
+                      height: 50
+                    }}
+                  >
+                    Tell Us About You
+                  </Text>
+                </Body>
+                <Right>
+                  <Button
+                    onPress={this.handleSubmit}
+                    hasText
+                    transparent
+                    style={{ height: 100 }}
+                  >
+                    <Text>Submit</Text>
+                  </Button>
+                </Right>
+              </Header>
+              <Content>
+                <Form style={{ paddingHorizontal: 50 }}>
+                  <Item floatingLabel rounded last>
+                    <Label>Your First Name</Label>
+                    <Input onChangeText={this.updateFirst} />
+                  </Item>
+                  <Item floatingLabel rounded last>
+                    <Label>Your Last Name</Label>
+                    <Input onChangeText={this.updateLast} />
+                  </Item>
+                  <Item floatingLabel rounded last>
+                    <Label>Your Age</Label>
+                    <Input onChangeText={this.updateAge} />
+                  </Item>
+                  <Item style={{ paddingTop: 10 }} picker>
+                    <Picker
+                      mode="dropdown"
+                      Ionicons={
+                        <Ionicons name={this.state.manIcon} size={25} />
+                      }
+                      style={{ width: 200 }}
+                      placeholder="Select Your Gender"
+                      placeholderStyle={{ color: '#bfc6ea' }}
+                      placeholderIconColor="#007aff"
+                      selectedValue={this.state.selected2}
+                      onValueChange={this.onValueChange2.bind(this)}
+                    >
+                      <Picker.Item label="Male" value="Male" />
+                      <Picker.Item label="Female" value="Female" />
+                      <Picker.Item label="Both" value="Both" />
+                      <Picker.Item label="Neither" value="Neither" />
+                      <Picker.Item label="Trans" value="Trans" />
+                      <Picker.Item label="Unsure" value="Unsure" />
+                      <Picker.Item
+                        label="Nonyabusiness"
+                        value="Nonyabusiness"
+                      />
+                    </Picker>
+                  </Item>
+                  <Item style={{ paddingRight: 10, paddingTop: 20 }}>
+                    <Textarea
+                      style={{ width: '100%' }}
+                      onChangeText={this.updateBio}
+                      rowSpan={7}
+                      bordered
+                      placeholder="Short Bio"
+                    />
+                  </Item>
+                </Form>
+              </Content>
+            </Container>
+          </ScrollView>
+        );
+      } else {
+        return (
+          <ScrollView style={styles.background}>
+            <Navbar source={require('../public/images/logo.png')} />
+            <ProfileCard
+              userName={this.state.userName}
+              firstName={this.firstName}
+              lastName={this.lastName}
+              age={this.age}
+              gender={this.gender}
+              bio={this.bio}
+            />
+            <View style={{ marginBottom: 60 }} />
+            <Container>
+              <View>
+                <Button
+                  onPress={this.handleButtonPress}
+                  iconLeft
+                  success
+                  large
+                  block
+                >
+                  <Ionicons name={this.state.cogIcon} size={25} />
+                  <Text>Set Up Profile</Text>
+                </Button>
+              </View>
+            </Container>
+          </ScrollView>
+        );
+      }
     } else {
       return (
-        <ScrollView style={styles.background}>
-          <Navbar source={require('../public/images/logo.png')} />
-          <ProfileCard
-            userName={this.state.userName}
-            firstName={this.firstName}
-            lastName={this.lastName}
-            age={this.age}
-            gender={this.gender}
-            bio={this.bio}
-          />
-          <View style={{ marginBottom: 60 }} />
-          <Container>
-            <View>
-              <Button
-                onPress={this.handleButtonPress}
-                iconLeft
-                success
+        <Container>
+          <Header span style={{ backgroundColor: '#add8e6' }}>
+            <Left>
+              <Thumbnail
                 large
-                block
-              >
-                <Ionicons 
-                  name={this.state.cogIcon}
-                  size={25}
-                />
-                <Text>Set Up Profile</Text>
-              </Button>
-            </View>
-          </Container>
-        </ScrollView>
+                source={require('../public/images/sampleImage(2).jpg')}
+              />
+            </Left>
+            <Body>
+              <Title>Welcome {this.state.firstName} !</Title>
+            </Body>
+            <Right />
+          </Header>
+          <Content style={{ flex: 1 }}>
+            <Card style={{ flex: 1 }}>
+              <CardItem>
+                <Body>
+                  <Image
+                    source={require('../public/images/friendzone.jpg')}
+                    style={{ height: 300, width: 380, flex: 1, padding: 10 }}
+                  />
+                </Body>
+              </CardItem>
+              <CardItem>
+                <Left>
+                  <Button transparent textStyle={{ color: '#87838B' }}>
+                    <Icon name="logo-github" />
+                    <Text>1,926 platonic friends</Text>
+                  </Button>
+                </Left>
+              </CardItem>
+            </Card>
+            <Text style={{ fontSize: 20, fontWeight: 'bold' }}>
+              {this.state.bio}
+            </Text>
+          </Content>
+        </Container>
       );
     }
   }

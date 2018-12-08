@@ -29,8 +29,12 @@ const FavoritesRoute = props => (
 );
 
 const ExploreRoute = props => (
-  <SafeAreaView>
-    <Button title="Logout" onPress={props.handleLogout} />
+  <SafeAreaView style={{ flex: 1 }}>
+    <Button
+      title="Logout"
+      onPress={props.handleLogout}
+      user={props.user.local.username}
+    />
     <Aboutme />
   </SafeAreaView>
 );
@@ -102,14 +106,12 @@ class Home extends React.Component {
       />
     ),
     profile: props => (
-      <ExploreRoute 
-        {...props} 
+      <ExploreRoute
+        {...props}
+        user={this.state.user}
         handleLogout={this.logout}
       />
-    ),
-    logout: () => <LogOut handleLogout={this.logout} />
-
-
+    )
   });
 
   updateUsername = username => {
@@ -194,10 +196,10 @@ const styles = StyleSheet.create({
     right: 0,
     bottom: 0,
     backgroundColor: '#e1e1e1'
-  }, 
+  },
   logout: {
     backgroundColor: '#c0c0c0',
     color: 'white',
-    marginTop: 2 
+    marginTop: 2
   }
 });
