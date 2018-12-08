@@ -23,7 +23,10 @@ export default class News extends React.Component {
       .catch(err => console.log(err));
   };
 
-  
+  toggleFav = () => {
+    console.log('fav-ed!');
+  };
+
   render() {
     const { trends } = this.state;
 
@@ -38,6 +41,8 @@ export default class News extends React.Component {
               name={trend.title}
               url={trend.url}
               description={trend.description}
+              click={this.toggleFav}
+              user={this.props.user}
             />
           ))}
           <View style={{ marginBottom: 60 }} />

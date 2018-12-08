@@ -12,18 +12,19 @@ import { BottomNavigation } from 'react-native-paper';
 import api from '../api.js';
 import Trend from './Trend';
 import Aboutme from './Aboutme';
+import Favorites from './Favorites';
 
 const HomeRoute = props => (
   <SafeAreaView style={{ flex: 1 }}>
     <Button title="Logout" onPress={props.handleLogout} />
-    <Trend />
+    <Trend user={props.user.local.username} />
   </SafeAreaView>
 );
 
 const FavoritesRoute = props => (
-  <SafeAreaView>
+  <SafeAreaView style={{ flex: 1 }}>
     <Button title="Logout" onPress={props.handleLogout} />
-    <Trend />
+    <Favorites user={props.user.local.username} favs={props.favs} />
   </SafeAreaView>
 );
 
@@ -56,6 +57,11 @@ class Home extends React.Component {
     favorites: []
   };
 
+  handleGetFav = async () => {
+    const favorites = await api.getFav({ user: this.props.user });
+    this.setState({ favorites });
+  };
+
   componentDidMount = async () => {
     this.getUser();
   };
@@ -63,14 +69,30 @@ class Home extends React.Component {
   _handleIndexChange = index => {
     this.setState({ index });
     console.log(index);
+    if (index === 1) {
+      this.handleGetFav();
+    }
   };
 
   _renderScene = BottomNavigation.SceneMap({
-    home: props => <HomeRoute {...props} handleLogout={this.logout} />,
-    favorites: props => (
-      <FavoritesRoute {...props} handleLogout={this.logout} />
+    home: props => (
+      <HomeRoute {...props} handleLogout={this.logout} user={this.state.user} />
     ),
-    mingle: props => <MingleRoute {...props} handleLogout={this.logout} />,
+    favorites: props => (
+      <FavoritesRoute
+        {...props}
+        handleLogout={this.logout}
+        user={this.state.user}
+        favs={this.state.favorites}
+      />
+    ),
+    mingle: props => (
+      <MingleRoute
+        {...props}
+        handleLogout={this.logout}
+        user={this.state.user}
+      />
+    ),
     profile: props => <ExploreRoute {...props} handleLogout={this.logout} />
   });
 
@@ -78,6 +100,7 @@ class Home extends React.Component {
     this.setState({ username });
     console.log(username);
   };
+
   updatePassword = password => {
     this.setState({ password });
     console.log(password);
@@ -88,9 +111,8 @@ class Home extends React.Component {
     this.setState({ user });
     if (user) {
       this.setState({ index: 0 });
-    } else {
     }
-    console.log(user);
+    this.handleGetFav();
   };
 
   signup = async () => {

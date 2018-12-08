@@ -10,8 +10,8 @@ import {
   Icon,
   Text
 } from 'native-base';
-import Tab1 from './Twittertrend';
-import Tab2 from './Buzzfeed';
+import Tab2 from './Twittertrend';
+import Tab1 from './Buzzfeed';
 // import Tab3 from './tabThree';
 
 export default class Trend extends React.Component {
@@ -29,7 +29,7 @@ export default class Trend extends React.Component {
                 </TabHeading>
               }
             >
-              <Tab1 />
+              <Tab1 user={this.props.user} />
             </Tab>
             <Tab
               heading={
@@ -39,7 +39,7 @@ export default class Trend extends React.Component {
                 </TabHeading>
               }
             >
-              <Tab2 />
+              <Tab2 user={this.props.user} />
             </Tab>
           </Tabs>
         </Container>

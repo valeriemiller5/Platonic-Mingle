@@ -1,12 +1,12 @@
-import React, { Component } from 'react'
-import { StyleSheet, Text, TouchableHighlight } from 'react-native'
+import React, { Component } from 'react';
+import { StyleSheet, Text, TouchableHighlight } from 'react-native';
 
 const Button = props => {
   function getContent() {
     if (props.children) {
-      return props.children
+      return props.children;
     }
-    return <Text>Button</Text>
+    return <Text>dummy</Text>;
   }
 
   return (
@@ -20,8 +20,8 @@ const Button = props => {
     >
       {getContent()}
     </TouchableHighlight>
-  )
-}
+  );
+};
 
 const styles = StyleSheet.create({
   button: {
@@ -29,6 +29,6 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     padding: 20
   }
-})
+});
 
-export default Button
+export default Button;
