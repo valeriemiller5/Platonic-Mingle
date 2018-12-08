@@ -1,11 +1,11 @@
 import { ScrollView, View, StyleSheet } from 'react-native';
+import Ionicons from 'react-native-vector-icons/Ionicons';
 import Navbar from '../components/TopNavbar';
-import LargeCard from '../components/LargeCard';
+import ProfileCard from '../components/ProfileCard';
 import {
   Content,
   Container,
   Header,
-  Icon,
   Button,
   Text,
   Form,
@@ -15,11 +15,11 @@ import {
   Picker,
   Left,
   Right,
+  Root,
   Body,
-  Title,
-  Subtitle,
   Textarea
 } from 'native-base';
+import { AppLoading, Font } from 'expo';
 import React from 'react';
 import api from '../api.js';
 
@@ -36,7 +36,11 @@ export default class Aboutme extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      selected2: undefined
+      selected2: undefined,
+      cogIcon: 'ios-cog',
+      manIcon: 'ios-man',
+      arroIcon: 'ios-arrow-dropleft',
+      loading: true
     };
   }
   onValueChange2(value) {
@@ -45,7 +49,15 @@ export default class Aboutme extends React.Component {
     });
   }
 
-  componentDidMount = async () => this.getUser();
+  componentWillMount = async () => {
+    await Font.loadAsync({
+      Roboto: require("native-base/Fonts/Roboto.ttf"),
+      Roboto_medium: require("native-base/Fonts/Roboto_medium.ttf")
+    });
+    this.setState({ loading: false });
+  }
+
+  componentDidMount = async () => await this.getUser();
 
   handleButtonPress = () => this.setState({ buttonPressed: true });
 
@@ -91,6 +103,13 @@ export default class Aboutme extends React.Component {
   };
 
   render() {
+    if (this.state.loading) {
+      return (
+        <Root>
+          <AppLoading />
+        </Root>
+      );
+    }
     if (this.state.buttonPressed) {
       return (
         <ScrollView style={styles.background}>
@@ -103,18 +122,17 @@ export default class Aboutme extends React.Component {
                   transparent
                   style={{ height: 100 }}
                 >
-                  <Icon name="ios-arrow-dropleft" />
+                  <Ionicons 
+                    name={this.state.arroIcon}
+                    size={25}
+                  />
                   <Text>Cancel</Text>
                 </Button>
               </Left>
               <Body>
-                <Text style={{ width: 200, paddingRight: 15, marginBottom: 5 }}>
+                <Text style={{ color: 'white', marginLeft: 5, fontSize: 20, width: 200, paddingRight: 15, height: 50 }}>
                   Tell Us About You
                 </Text>
-                <Subtitle>
-                  Disclaimer: Platonic Mingle will not distribute your data to
-                  third parties unless it's for money
-                </Subtitle>
               </Body>
               <Right>
                 <Button
@@ -144,7 +162,10 @@ export default class Aboutme extends React.Component {
                 <Item style={{ paddingTop: 10 }} picker>
                   <Picker
                     mode="dropdown"
-                    iosIcon={<Icon name="ios-man" />}
+                    Ionicons={<Ionicons 
+                                name={this.state.manIcon}
+                                size={25}
+                              />}
                     style={{ width: 200 }}
                     placeholder="Select Your Gender"
                     placeholderStyle={{ color: '#bfc6ea' }}
@@ -179,9 +200,13 @@ export default class Aboutme extends React.Component {
       return (
         <ScrollView style={styles.background}>
           <Navbar source={require('../public/images/logo.png')} />
-          <LargeCard
-            image={require('../public/images/sampleImage(2).jpg')}
-            title="Wow... Such Empty"
+          <ProfileCard
+            userName={this.state.userName}
+            firstName={this.firstName}
+            lastName={this.lastName}
+            age={this.age}
+            gender={this.gender}
+            bio={this.bio}
           />
           <View style={{ marginBottom: 60 }} />
           <Container>
@@ -193,7 +218,10 @@ export default class Aboutme extends React.Component {
                 large
                 block
               >
-                <Icon name="ios-cog" />
+                <Ionicons 
+                  name={this.state.cogIcon}
+                  size={25}
+                />
                 <Text>Set Up Profile</Text>
               </Button>
             </View>

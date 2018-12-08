@@ -56,12 +56,12 @@ const Login = props => (
       style={styles.scroll}
     >
       <Container>
-        <Label text="Username or Email" />
+        <Label style={{ color: 'white'}} text="">Username or Email</Label>
         <TextInput
           style={styles.textInput}
           onChangeText={props.updateUsername}
         />
-        <Label text="Password" />
+        <Label style={{ color: 'white'}} text="Password" />
         <TextInput
           secureTextEntry={true}
           style={styles.textInput}
@@ -117,7 +117,7 @@ const styles = StyleSheet.create({
     resizeMode: 'contain'
   },
   label: {
-    color: '#0d8898',
+    color: '#FFFFFF',
     fontSize: 20
   },
   alignRight: {

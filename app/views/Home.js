@@ -178,5 +178,10 @@ const styles = StyleSheet.create({
     right: 0,
     bottom: 0,
     backgroundColor: '#e1e1e1'
+  }, 
+  logout: {
+    backgroundColor: '#e1e1e1',
+    color: 'white',
+    marginTop: 2 
   }
 });
