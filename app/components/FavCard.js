@@ -1,18 +1,20 @@
 import React from 'react';
 import { Text, View, Image, Linking, StyleSheet } from 'react-native';
 import Row from '../components/Row';
-import LikeIcon from '../components/LikeIcon';
 
-const SmallCard = props => (
+const FavCard = props => (
   <View style={styles.cardView}>
     <Row>
       <View style={{ width: '30%' }}>
         <Image
-          style={{ marginTop: 5, marginLeft: 5, width: null, height: 100 }}
-          source={require('../public/images/poop.png')}
+          style={{ marginLeft: 5, width: null, height: 100 }}
+          source={
+            props.image === '../public/images/poop.png'
+              ? require('../public/images/poop.png')
+              : { uri: `${props.image}` }
+          }
           resizeMode="contain"
         />
-        <LikeIcon {...props} />
       </View>
       <View style={{ width: '70%' }}>
         <Text style={styles.cardTitle}>{props.name}</Text>
@@ -28,35 +30,31 @@ const SmallCard = props => (
   </View>
 );
 
-export default SmallCard;
+export default FavCard;
 
 const styles = StyleSheet.create({
   cardView: {
-    height: 130,
     padding: 0,
-    marginLeft: 15,
-    marginRight: 15,
+    margin: 15,
     marginTop: 5,
-    marginBottom: 5,
+    marginBottom: 2,
     backgroundColor: '#fef9f6'
   },
+  image: { width: null, height: 240, marginTop: 0 },
   cardTitle: {
-    fontSize: 14,
+    fontSize: 16,
     fontWeight: 'bold',
-    textAlign: 'left',
-    marginTop: 20,
-    marginLeft: 15,
-    justifyContent: 'center',
-    color: '#43484d',
-    width: '100%'
+    textAlign: 'center',
+    marginBottom: 10,
+    marginLeft: 5,
+    color: '#43484d'
   },
   cardDetails: {
     fontSize: 14,
-    textAlign: 'left',
+    textAlign: 'center',
+    marginLeft: 10,
+    marginRight: 10,
     marginBottom: 10,
-    marginLeft: 15,
-    paddingRight: 0,
-    color: '#43484d',
-    width: '100%'
+    color: '#43484d'
   }
 });

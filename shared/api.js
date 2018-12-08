@@ -20,8 +20,14 @@ class api {
     return response.data;
   }
 
-  async createTrend(trendData) {
-    const response = await axios.post("/api/favs", trendData);
+  async createFav(fav) {
+    const response = await axios.post('/api/favs', fav);
+    return response.data;
+  }
+
+  async getFav(user) {
+    console.log('user is ' + user.user);
+    const response = await axios.get('/api/favs');
     return response.data;
   }
 

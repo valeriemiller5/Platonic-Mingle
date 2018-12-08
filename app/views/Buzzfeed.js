@@ -16,7 +16,6 @@ export default class News extends React.Component {
     api
       .getNews()
       .then(res => {
-        // console.log(res.articles);
         this.setState({
           trends: res.articles
         });
@@ -24,26 +23,9 @@ export default class News extends React.Component {
       .catch(err => console.log(err));
   };
 
-  handleSaveFav = e => {
-    let favTrend = this.state.trends
-    console.log(favTrend[0].source.name)
-    favTrend.map(fav => {
-        console.log(fav.source.name)
-        // if(save === this.id) {
-          // console.log(fav)
-            // api.createTrend({
-            //     title: fav.title,
-            //     description: fav.description,
-            //     url: fav.url,
-            //     image: fav.urlToImage
-            // })
-            // .then(res => {
-            //     console.log("Data has been saved to database");
-            // })
-            // .catch(err => console.log(err))
-        // }
-    })
-   }
+  toggleFav = () => {
+    console.log('fav-ed!');
+  };
 
   render() {
     const { trends } = this.state;
@@ -54,12 +36,13 @@ export default class News extends React.Component {
           {trends.map(trend => (
             <LargeCard
               key={trend.title}
-              id={trend.source.name}
+              id={trend.publishedAt}
               image={trend.urlToImage}
               name={trend.title}
               url={trend.url}
               description={trend.description}
-              click={this.handleSaveFav.bind(this)}
+              click={this.toggleFav}
+              user={this.props.user}
             />
           ))}
           <View style={{ marginBottom: 60 }} />

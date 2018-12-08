@@ -1,36 +1,40 @@
-import React from 'react'
-import { Text, View, Image, Linking, StyleSheet } from 'react-native'
-import Row from '../components/Row'
-import LikeIcon from '../components/LikeIcon'
-import Button from '../components/Button'
+import React from 'react';
+import { Text, View, Image, Linking, StyleSheet } from 'react-native';
+import Row from '../components/Row';
+import LikeIcon from '../components/LikeIcon';
 
-const LargeCard = props => (
-  <View style={styles.cardView}>
-    <Row>
-      <View style={{ width: '30%' }}>
-        <Image
-          style={{ marginLeft: 5, width: null, height: 100 }}
-          source={{
-            uri: `${props.image}` || require('../public/images/sampleImage.jpg')
-          }}
-          resizeMode="contain"
-        />
-        <LikeIcon />
-        <Button id={props.id} onPress={props.click}/>
-      </View>
-      <View style={{ width: '70%' }}>
-        <Text style={styles.cardTitle}>{props.name}</Text>
-        <Text style={styles.cardDetails}>{props.description}</Text>
-        <Text
-          onPress={() => Linking.openURL(props.url)}
-          style={styles.cardDetails}
-        >
-          Click here to learn more!
-        </Text>
-      </View>
-    </Row>
-  </View>
-);
+const LargeCard = props => {
+  return (
+    <View style={styles.cardView}>
+      <Row>
+        <View style={{ width: '30%' }}>
+          <Image
+            style={{ marginLeft: 5, width: null, height: 100 }}
+            source={
+              props.image
+                ? {
+                    uri: `${props.image}`
+                  }
+                : require('../public/images/sampleImage.jpg')
+            }
+            resizeMode="contain"
+          />
+          <LikeIcon {...props} />
+        </View>
+        <View style={{ width: '70%' }}>
+          <Text style={styles.cardTitle}>{props.name}</Text>
+          <Text style={styles.cardDetails}>{props.description}</Text>
+          <Text
+            onPress={() => Linking.openURL(props.url)}
+            style={styles.cardDetails}
+          >
+            Click here to learn more!
+          </Text>
+        </View>
+      </Row>
+    </View>
+  );
+};
 
 export default LargeCard;
 

@@ -1,9 +1,6 @@
 {
   "name": "mern",
   "version": "1.0.0",
-  "engines": {
-    "node": "v8.11.2"
-  },
   "description": "Mern Demo",
   "main": "server.js",
   "scripts": {
