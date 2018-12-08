@@ -10,8 +10,8 @@ import {
   Icon,
   Text
 } from 'native-base';
-import Tab1 from './Twittertrend';
-import Tab2 from './Buzzfeed';
+import Tab2 from './Twittertrend';
+import Tab1 from './Buzzfeed';
 // import Tab3 from './tabThree';
 
 export default class Trend extends React.Component {

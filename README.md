@@ -22,22 +22,31 @@ Notable issues when creating this program were conflicts with branch deployments
 
 ## How it works
 Logging in:
+ 
 ![logging in](demo_videos/sign_up.gif)
 
 Once user has been created, their loggin credentials are saved to the database:
 ![user saved](demo_videos/db_screenshot_1.png)
 
 Create a profile:
+ 
 ![create profile](demo_videos/set_profile.gif)
 
 Once a profile is created, it is saved under the user's account in the database:
 ![profile saved](demo_videos/db_screenshot_2.png)
 
 Save favorite trends:
+ 
 ![save fave](demo_videos/sav_fav.gif)
 
 Trends and articles will automatically render.  When the heart icon is clicked, the article is saved to the favorites screen and the user's database:
-![fave saved](demo_videos/sav_fav.png)
+![fave saved](demo_videos/db_screenshot_3.png)
+
+COMING SOON - Mingle:
+Connect with other PlatonicMingle users - make friends without actually talking to someone
+ 
+![mingle](demo_videos/mingle.gif)
+
 
 ## Built With
 * React-Native

@@ -16,7 +16,7 @@ import Favorites from './Favorites';
 
 const HomeRoute = props => (
   <SafeAreaView style={{ flex: 1 }}>
-    {/* <Button title="Logout" style={styles.logout} onPress={props.handleLogout} /> */}
+    {/* <Button title="Logout" onPress={props.handleLogout} /> */}
     <Trend user={props.user.local.username} />
   </SafeAreaView>
 );
@@ -30,11 +30,11 @@ const FavoritesRoute = props => (
 
 const ExploreRoute = props => (
   <SafeAreaView style={{ flex: 1 }}>
-    <Button
+    {/* <Button
       title="Logout"
       onPress={props.handleLogout}
       user={props.user.local.username}
-    />
+    /> */}
     <Aboutme />
   </SafeAreaView>
 );
@@ -109,9 +109,10 @@ class Home extends React.Component {
       <ExploreRoute
         {...props}
         user={this.state.user}
-        handleLogout={this.logout}
+        // handleLogout={this.logout}
       />
-    )
+    ),
+    logout: props => <LogOut {...props} handleLogout={this.logout} />
   });
 
   updateUsername = username => {
