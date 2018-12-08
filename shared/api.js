@@ -36,6 +36,14 @@ class api {
     return response.data.user;
   }
 
+  async getProfile() {
+    console.log('getting profile...');
+    const response = await axios.get('/api/create_profile');
+    console.log('getting profile...');
+    console.log(response.data);
+    return response.data;
+  }
+
   async login(username, password) {
     const response = await axios.post('/auth/login', { username, password });
     return response.data.user;

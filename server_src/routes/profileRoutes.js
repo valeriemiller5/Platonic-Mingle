@@ -9,4 +9,14 @@ router.post('/', function(req, res) {
   });
 });
 
+router.get('/', function(req, res) {
+  console.log('getting profile ---');
+  console.log(req.user.local.username);
+  db.Profile.find({ userName: req.user.local.username }).then(function(
+    profile
+  ) {
+    res.json(profile);
+  });
+});
+
 module.exports = router;
