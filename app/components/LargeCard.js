@@ -2,7 +2,6 @@ import React from 'react'
 import { Text, View, Image, Linking, StyleSheet } from 'react-native'
 import Row from '../components/Row'
 import LikeIcon from '../components/LikeIcon'
-import Button from '../components/Button'
 
 const LargeCard = props => (
   <View style={styles.cardView}>
@@ -16,7 +15,6 @@ const LargeCard = props => (
           resizeMode="contain"
         />
         <LikeIcon />
-        <Button id={props.id} onPress={props.click}/>
       </View>
       <View style={{ width: '70%' }}>
         <Text style={styles.cardTitle}>{props.name}</Text>

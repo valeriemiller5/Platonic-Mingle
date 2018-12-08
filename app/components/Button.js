@@ -6,7 +6,7 @@ const Button = props => {
     if (props.children) {
       return props.children
     }
-    return <Text style={props.styles.label}>{props.label}</Text>
+    return <Text>Button</Text>
   }
 
   return (
