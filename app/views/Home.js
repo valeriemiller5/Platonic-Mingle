@@ -16,14 +16,14 @@ import Favorites from './Favorites';
 
 const HomeRoute = props => (
   <SafeAreaView style={{ flex: 1 }}>
-    <Button title="Logout" onPress={props.handleLogout} />
+    {/* <Button title="Logout" style={styles.logout} onPress={props.handleLogout} /> */}
     <Trend user={props.user.local.username} />
   </SafeAreaView>
 );
 
 const FavoritesRoute = props => (
   <SafeAreaView style={{ flex: 1 }}>
-    <Button title="Logout" onPress={props.handleLogout} />
+    {/* <Button title="Logout" onPress={props.handleLogout} /> */}
     <Favorites user={props.user.local.username} favs={props.favs} />
   </SafeAreaView>
 );
@@ -37,10 +37,17 @@ const ExploreRoute = props => (
 
 const MingleRoute = props => (
   <SafeAreaView>
-    <Button title="Logout" onPress={props.handleLogout} />
+    {/* <Button title="Logout" onPress={props.handleLogout} /> */}
     <Trend />
   </SafeAreaView>
 );
+
+const LogOut = props => (
+  <SafeAreaView>
+    <Button title="Logout" onPress={props.handleLogout} />
+    <Login />
+  </SafeAreaView>
+)
 
 class Home extends React.Component {
   state = {
@@ -49,7 +56,8 @@ class Home extends React.Component {
       { key: 'home', title: 'Home', icon: 'home' },
       { key: 'favorites', title: 'Favorites', icon: 'favorite-border' },
       { key: 'mingle', title: 'Mingle', icon: 'share' },
-      { key: 'profile', title: 'About Me', icon: 'person-outline' }
+      { key: 'profile', title: 'About Me', icon: 'person-outline' },
+      { key: 'logout', title: 'Log Out', icon: 'power-settings-new' }
     ],
     user: null,
     username: '',
@@ -81,7 +89,7 @@ class Home extends React.Component {
     favorites: props => (
       <FavoritesRoute
         {...props}
-        handleLogout={this.logout}
+        // handleLogout={this.logout}
         user={this.state.user}
         favs={this.state.favorites}
       />
@@ -89,11 +97,19 @@ class Home extends React.Component {
     mingle: props => (
       <MingleRoute
         {...props}
-        handleLogout={this.logout}
+        // handleLogout={this.logout}
         user={this.state.user}
       />
     ),
-    profile: props => <ExploreRoute {...props} handleLogout={this.logout} />
+    profile: props => (
+      <ExploreRoute 
+        {...props} 
+        handleLogout={this.logout}
+      />
+    ),
+    logout: () => <LogOut handleLogout={this.logout} />
+
+
   });
 
   updateUsername = username => {
@@ -111,8 +127,8 @@ class Home extends React.Component {
     this.setState({ user });
     if (user) {
       this.setState({ index: 0 });
+      this.handleGetFav();
     }
-    this.handleGetFav();
   };
 
   signup = async () => {
@@ -180,7 +196,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#e1e1e1'
   }, 
   logout: {
-    backgroundColor: '#e1e1e1',
+    backgroundColor: '#c0c0c0',
     color: 'white',
     marginTop: 2 
   }

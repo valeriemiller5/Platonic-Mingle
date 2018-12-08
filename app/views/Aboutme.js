@@ -114,7 +114,7 @@ export default class Aboutme extends React.Component {
       return (
         <ScrollView style={styles.background}>
           <Container style={{ padding: 10 }}>
-            <Header span>
+            <Header span style={{ backgroundColor: '#add8e6'}}>
               <Left>
                 <Button
                   onPress={this.handleBack}
