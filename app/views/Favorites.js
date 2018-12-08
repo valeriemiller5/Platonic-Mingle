@@ -1,32 +1,81 @@
-import React from "react";
-import { ScrollView, SafeAreaView, Text, AsyncStorage } from "react-native";
+import {
+  SafeAreaView,
+  ScrollView,
+  View,
+  StyleSheet,
+  Text,
+  RefreshControl
+} from 'react-native';
+import React from 'react';
+import api from '../api';
+import FavCard from '../components/FavCard';
 
-import ListItem from "../components/ListItem";
-
-class Favorites extends React.Component {
+export default class Trend extends React.Component {
   state = {
-    favs: {}
+    user: null,
+    favs: [],
+    refreshing: false
   };
 
-  componentDidMount = async () => {
-    let favorites = (await AsyncStorage.getItem("favorites")) || {};
-    typeof favorites === "string"
-      ? (favorites = JSON.parse(favorites))
-      : favorites;
-    this.setState({ favs: favorites });
+  componentDidMount = () => {
+    this.setState({ user: this.props.user });
+    this.handleGetFav();
   };
 
+  handleGetFav = async () => {
+    const favs = await api.getFav({ user: this.props.user });
+    this.setState({ favs });
+    console.log(favs);
+  };
+
+  _onRefresh = () => {
+    this.setState({ refreshing: true });
+    this.handleGetFav().then(() => {
+      this.setState({ refreshing: false });
+    });
+  };
   render() {
+    const { favs } = this.state;
     return (
-      <SafeAreaView style={{ flex: 1 }}>
-        <ScrollView style={{ flex: 1 }}>
-          {Object.keys(this.state.favs).map(movie => (
-            <Text key={movie.imdbID}>{movie.Title}</Text>
+      <View style={{ flex: 1, backgroundColor: 'red' }}>
+        <Navbar source={require('../public/images/logo.png')} />
+        <ScrollView
+          style={styles.background}
+          refreshControl={
+            <RefreshControl
+              refreshing={this.state.refreshing}
+              onRefresh={this._onRefresh}
+            />
+          }
+        >
+          {favs.map(trend => (
+            <FavCard
+              key={trend._id}
+              image={trend.image}
+              name={trend.title}
+              url={trend.url}
+              description={trend.description}
+            />
           ))}
         </ScrollView>
-      </SafeAreaView>
+      </View>
     );
   }
 }
 
-export default Favorites;
+const styles = StyleSheet.create({
+  background: {
+    backgroundColor: '#e1e1e1'
+  },
+  safeArea: {
+    flex: 1,
+    backgroundColor: '#e1e1e1'
+  },
+  bottom: {
+    position: 'absolute',
+    left: 0,
+    right: 0,
+    bottom: 0,
+    backgroundColor: '#e1e1e1'
+  }
+});
