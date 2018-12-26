@@ -1,110 +1,27 @@
-import React, { Component } from 'react';
-import api from './api';
-import logo from './logo.svg';
-import './App.css';
+import React from 'react'
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
+import Login from './pages/Login'
+import Logout from './pages/Logout'
+import Favorites from './pages/Favorites'
+import Trend from './pages/Trend'
+import AboutMe from './pages/AboutMe'
+import BuzzFeed from './pages/BuzzFeed'
+import Twittertrend from './pages/Twittertrend'
 
-class App extends Component {
-  state = {
-    user: null,
-    username: '',
-    password: ''
-  };
-
-  componentDidMount = () => {
-    this.getUser();
-    // this.handleTrends();
-  };
-
-  handleChange = event => {
-    const { name, value } = event.target;
-    this.setState({ [name]: value });
-  };
-
-//   handleTrends = async () => {
-//     try{
-//       await api.getTrend()
-//         .then(res => {
-//             console.log(res.data);
-//             this.setState({ 
-//                 trends: res.data
-//             });
-//       })
-//     } catch (err) {
-//       console.log(err)
-//     }
-// };
-
-  getUser = async () => {
-    try {
-      const user = await api.getUser();
-      this.setState({ user });
-    } catch (err) {
-      console.log('Error in App');
-    }
-  };
-
-  signup = async () => {
-    await api.signup(this.state.username, this.state.password);
-    this.getUser();
-  };
-
-  login = async () => {
-    try {
-      await api.login(this.state.username, this.state.password);
-      this.getUser();
-    } catch (err) {
-      console.error(err);
-    }
-  };
-
-  logout = async () => {
-    await api.logout();
-    this.setState({ user: null });
-  };
-
-  render() {
-    const { user, username, password } = this.state;
-
-    return (
-      <div className="App">
-        <div className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h2>Welcome to React</h2>
-        </div>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
-        {!user && (
-          <div>
-            <label htmlFor="username">Username:</label>
-            <input
-              onChange={this.handleChange}
-              id="username"
-              name="username"
-              value={username}
-            />
-            <br />
-            <label htmlFor="password">Password:</label>
-            <input
-              onChange={this.handleChange}
-              id="password"
-              name="password"
-              value={password}
-            />
-            <br />
-            <button onClick={this.login}>Login</button>
-            <button onClick={this.signup}>Signup</button>
-          </div>
-        )}
-        {user && (
-          <div>
-            <p>Hello {user._id}</p>
-            <button onClick={this.logout}>Logout</button>
-          </div>
-        )}
-      </div>
-    );
-  }
-}
+const App = () => (
+  <Router>
+    <div>
+      <Switch>
+        <Route exact path="/" component={Login} />
+        <Route exact path="/Favorites/:id" component={Favorites} />
+        <Route exact path="/Trend" component={Trend} />
+        <Route exact path="/Trend/BuzzFeed" component={BuzzFeed}/>
+        <Route exact path="/Trend/Twittertrend" component={Twittertrend}/>
+        <Route exact path="/AboutMe" component={AboutMe}/>
+        <Route exact path="/Logout" component={Logout}/>
+      </Switch>
+    </div>
+  </Router>
+)
 
 export default App;

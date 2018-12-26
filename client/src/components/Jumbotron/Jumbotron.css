@@ -1,0 +1,30 @@
+body {
+    background-image: url('../../images/loginBackground.jpg');
+    background-size: cover;
+}
+
+.jumbotron {
+    height: 250px;
+    clear: both;
+    padding-top: 100px;
+    text-align: center;
+    background-color: transparent !important;
+}
+
+form {
+    background-color: none !important;
+    font-size: 20px;
+    color: white;
+    width: 50%;
+    margin-left: 350px;
+}
+
+img {
+    height: 75%;
+}
+
+h1, h3 {
+    font-family: 'Poppins', sans-serif;
+    color: white;
+}
+
