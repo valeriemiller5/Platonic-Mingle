@@ -6,12 +6,14 @@
   "scripts": {
     "start": "if-env NODE_ENV=production && npm run start:prod || npm run start:dev",
     "start:prod": "node server.js",
-    "start:dev": "concurrently \"npm run server\"",
-    "start:all": "concurrently \"npm run server\" \"npm run app\"",
+    "start:dev": "concurrently \"npm run server\" \"npm run client\"",
+    "start:all": "concurrently \"npm run server\" \"npm run client\" \"npm run app\"",
     "server": "nodemon --ignore 'client/*' --ignore 'app/*' --ignore 'shared/*' || true",
+    "client": "cd client && npm run start",
     "app": "cd app && expo start",
     "install": "cd client && yarn install && cd ../app && yarn install && cd ../shared && yarn install",
-    "build": "cd client && npm run build"
+    "build": "cd client && npm run build",
+    "heroku-postbuild": "npm run build"
   },
   "author": "",
   "license": "ISC",
@@ -19,7 +21,8 @@
     "babel-preset-expo": "^5.0.0",
     "concurrently": "^4.1.0",
     "expo-cli": "^2.6.0",
-    "nodemon": "^1.18.7"
+    "nodemon": "^1.18.7",
+    "redux-devtools": "^3.4.2"
   },
   "dependencies": {
     "axios": "^0.18.0",
@@ -38,6 +41,8 @@
     "native-base": "^2.8.1",
     "passport": "^0.4.0",
     "passport-local": "^1.0.0",
+    "react-redux": "^6.0.0",
+    "redux": "^4.0.1",
     "twitter": "^1.7.1",
     "typescript": "^3.2.1"
   },
