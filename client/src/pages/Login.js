@@ -6,6 +6,7 @@ import { Input, FormBtn } from "../components/Form";
 // import API from "../../utils/API";
 // import { Container, Col, Row } from "../../components/Grid";
 // import { List, ListItem } from "../../components/List";
+import api from "../api";
 
 
 class Login extends Component {
@@ -17,7 +18,7 @@ class Login extends Component {
 
   componentDidMount = () => {
     this.getUser();
-    // this.handleTrends();
+    this.handleTrends();
   };
 
   handleChange = event => {
@@ -26,36 +27,36 @@ class Login extends Component {
   };
 
   handleTrends = async () => {
-    // try{
-    //   await api.getTrend()
-    //     .then(res => {
-    //         console.log(res.data);
-    //         this.setState({ 
-    //             trends: res.data
-    //         });
-    //   })
-    // } catch (err) {
-    //   console.log(err)
-    // }
+    try{
+      await api.getTrend()
+        .then(res => {
+            console.log(res.data);
+            this.setState({ 
+                trends: res.data
+            });
+      })
+    } catch (err) {
+      console.log(err)
+    }
 };
 
   getUser = async () => {
-    // try {
-    //   const user = await api.getUser();
-    //   this.setState({ user });
-    // } catch (err) {
-    //   console.log('Error in App');
-    // }
+    try {
+      const user = await api.getUser();
+      this.setState({ user });
+    } catch (err) {
+      console.log('Error in App');
+    }
   };
 
   signup = async () => {
-    // await api.signup(this.state.username, this.state.password);
+    await api.signup(this.state.username, this.state.password);
     this.getUser();
   };
 
   login = async () => {
     try {
-      // await api.login(this.state.username, this.state.password);
+      await api.login(this.state.username, this.state.password);
       this.getUser();
     } catch (err) {
       console.error(err);
@@ -63,7 +64,7 @@ class Login extends Component {
   };
 
   logout = async () => {
-    // await api.logout();
+    await api.logout();
     this.setState({ user: null });
   };
 
