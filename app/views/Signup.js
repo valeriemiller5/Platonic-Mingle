@@ -1,8 +1,13 @@
 import React, { Component } from "react";
 import { StyleSheet, TextInput, ScrollView, Button } from "react-native";
-
 import Container from "../components/Container";
 import Label from "../components/Label";
+import * as Font from 'expo-font'
+
+await Font.loadAsync({
+  Roboto: require('../node_modules/native-base/Fonts/Roboto.ttf'),
+  Roboto_medium: require('../node_modules/native-base/Fonts/Roboto_medium.ttf')
+});
 
 export default class Login extends Component {
   state = {

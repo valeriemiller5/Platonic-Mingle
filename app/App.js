@@ -2,7 +2,7 @@ import React from 'react';
 import { StyleSheet, Text, View, Button } from 'react-native';
 import { DefaultTheme, Provider as PaperProvider } from 'react-native-paper';
 import Home from './views/Home';
-import * as Font from 'expo-font';
+import * as Font from 'expo-font'
 
 const theme = {
   ...DefaultTheme,

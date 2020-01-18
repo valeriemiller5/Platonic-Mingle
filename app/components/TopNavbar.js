@@ -1,5 +1,12 @@
 import React from 'react';
 import { StyleSheet, View, Image } from 'react-native';
+import * as Font from 'expo-font'
+
+await Font.loadAsync({
+  Roboto: require('../node_modules/native-base/Fonts/Roboto.ttf'),
+  Roboto_medium: require('../node_modules/native-base/Fonts/Roboto_medium.ttf')
+});
+
 export default (Navbar = props => (
   <View>
     <View style={styles.navbar}>

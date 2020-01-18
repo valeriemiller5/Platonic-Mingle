@@ -1,6 +1,11 @@
 import React, { Component } from 'react'
-
+import * as Font from 'expo-font'
 import { StyleSheet, Text } from 'react-native'
+
+await Font.loadAsync({
+  Roboto: require('../node_modules/native-base/Fonts/Roboto.ttf'),
+  Roboto_medium: require('../node_modules/native-base/Fonts/Roboto_medium.ttf')
+});
 
 const Label = props => {
   return (
