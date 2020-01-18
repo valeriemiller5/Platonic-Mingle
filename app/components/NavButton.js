@@ -1,5 +1,11 @@
 import React from 'react';
 import { StyleSheet, TouchableOpacity, Text } from 'react-native';
+import * as Font from 'expo-font'
+
+await Font.loadAsync({
+  Roboto: require('../node_modules/native-base/Fonts/Roboto.ttf'),
+  Roboto_medium: require('../node_modules/native-base/Fonts/Roboto_medium.ttf')
+});
 
 const NavButton = props => {
   return (

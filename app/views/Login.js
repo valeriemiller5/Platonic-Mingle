@@ -9,10 +9,15 @@ import {
   Text,
   TouchableOpacity
 } from 'react-native';
-
 import Container from '../components/Container';
 import Button from '../components/NavButton';
 import Label from '../components/Label';
+import * as Font from 'expo-font'
+
+await Font.loadAsync({
+  Roboto: require('../node_modules/native-base/Fonts/Roboto.ttf'),
+  Roboto_medium: require('../node_modules/native-base/Fonts/Roboto_medium.ttf')
+});
 
 const Login = props => (
   <ImageBackground

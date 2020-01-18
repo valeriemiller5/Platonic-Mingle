@@ -1,7 +1,13 @@
 import React from 'react';
 import { View, TouchableWithoutFeedback } from 'react-native';
+import * as Font from 'expo-font'
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import api from '../api';
+
+await Font.loadAsync({
+  Roboto: require('../node_modules/native-base/Fonts/Roboto.ttf'),
+  Roboto_medium: require('../node_modules/native-base/Fonts/Roboto_medium.ttf')
+});
 
 export default class LikeIcon extends React.Component {
   constructor() {

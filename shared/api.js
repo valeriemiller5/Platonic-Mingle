@@ -1,14 +1,16 @@
-const _axios = require('axios');
+import React, { Component } from 'react';
+import axios from 'axios';
 
-let axios = _axios;
+// let axios = _axios;
 
-class api {
-  config(baseURL) {
-    axios = _axios.create({
-      baseURL
-    });
-  }
+// class api {
+//   config(baseURL) {
+//     axios = _axios.create({
+//       baseURL
+//     });
+//   }
 
+class api extends Component {
   async getTrend() {
     const response = await axios.get('/api/twitter');
     // console.log('api.js line 14: ', response.data); // this is working
@@ -65,6 +67,7 @@ class api {
     console.log(response);
     return response.data;
   }
+
 }
 
-module.exports = api;
+export default api;

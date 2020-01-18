@@ -2,6 +2,12 @@ import React from 'react';
 import { Text, View, Image, Linking, StyleSheet } from 'react-native';
 import Row from '../components/Row';
 import LikeIcon from '../components/LikeIcon';
+import * as Font from 'expo-font'
+
+await Font.loadAsync({
+  Roboto: require('../node_modules/native-base/Fonts/Roboto.ttf'),
+  Roboto_medium: require('../node_modules/native-base/Fonts/Roboto_medium.ttf')
+});
 
 const LargeCard = props => {
   return (

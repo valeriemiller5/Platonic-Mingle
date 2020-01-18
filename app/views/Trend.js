@@ -13,6 +13,12 @@ import {
 import Tab2 from './Twittertrend';
 import Tab1 from './Buzzfeed';
 // import Tab3 from './tabThree';
+import * as Font from 'expo-font'
+
+await Font.loadAsync({
+  Roboto: require('../node_modules/native-base/Fonts/Roboto.ttf'),
+  Roboto_medium: require('../node_modules/native-base/Fonts/Roboto_medium.ttf')
+});
 
 export default class Trend extends React.Component {
   render() {

@@ -9,6 +9,12 @@ import {
 import React from 'react';
 import api from '../api';
 import FavCard from '../components/FavCard';
+import * as Font from 'expo-font'
+
+await Font.loadAsync({
+  Roboto: require('../node_modules/native-base/Fonts/Roboto.ttf'),
+  Roboto_medium: require('../node_modules/native-base/Fonts/Roboto_medium.ttf')
+});
 
 export default class Trend extends React.Component {
   state = {
